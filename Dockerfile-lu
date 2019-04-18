@@ -1,0 +1,8 @@
+FROM registry.lierda.com/senthink/base/php-fpm
+COPY . /var/www/html/
+RUN chmod -R 777 /var/www/html/
+RUN chown -R www-data:www-data /var/www/html
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
+VOLUME /var/www/html
+VOLUME /var/run/php
+EXPOSE 80
