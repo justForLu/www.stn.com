@@ -11,7 +11,7 @@ use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 
-class CheckCategoryController extends BaseController
+class BannerController extends BaseController
 {
     /**
      * @var CheckCategory
