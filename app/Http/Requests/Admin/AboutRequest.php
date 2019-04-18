@@ -4,7 +4,7 @@ namespace App\Http\Requests\Admin;
 
 use App\Http\Requests\Request;
 
-class BannerRequest extends Request
+class AboutRequest extends Request
 {
     /**
      * Determine if the user is authorized to make this request.

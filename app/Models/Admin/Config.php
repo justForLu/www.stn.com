@@ -5,10 +5,10 @@ namespace App\Models\Admin;
 use App\Enums\ModuleEnum;
 use App\Models\Base;
 
-class Category extends Base
+class Config extends Base
 {
     // 模型对应表名
-    protected $table = 'category';
+    protected $table = 'config';
 
     protected $fillable = ['name','parent','path','grade','status','sort'];
 

@@ -42,10 +42,12 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::post('/file/uploadPic','FileController@uploadPic');
         Route::post('/file/uploadFile','FileController@uploadFile');
         Route::resource('/news', 'NewsController');
-        Route::resource('/check_category', 'CheckCategoryController');
-        Route::get('/getChildrenCategory', 'CheckCategoryController@getChildrenCategory');
-        Route::resource('/check_content', 'CheckContentController');
-        Route::resource('/course', 'CourseController');
+        Route::resource('/about', 'AboutController');
+        Route::resource('/banner', 'BannerController');
+        Route::resource('/category', 'CategoryController');
+        Route::resource('/contact', 'ContactController');
+        Route::resource('/product', 'ProductController');
+        Route::resource('/reveal', 'RevealController');
     });
 });
 

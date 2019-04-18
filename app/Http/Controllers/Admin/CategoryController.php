@@ -3,10 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
-use App\Models\Admin\CheckContent;
-use App\Http\Requests\Admin\CheckCategoryRequest;
-use App\Repositories\Admin\Criteria\CheckCategoryCriteria;
-use App\Repositories\Admin\CheckCategoryRepository as CheckCategory;
+use App\Http\Requests\Admin\CategoryRequest;
+use App\Repositories\Admin\Criteria\CategoryCriteria;
+use App\Repositories\Admin\CategoryRepository as Category;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
@@ -14,15 +13,15 @@ use Illuminate\Support\Facades\Config;
 class CategoryController extends BaseController
 {
     /**
-     * @var CheckCategory
+     * @var Category
      */
-    protected $check_category;
+    protected $category;
 
-    public function __construct(CheckCategory $check_category)
+    public function __construct(Category $category)
     {
         parent::__construct();
 
-        $this->check_category = $check_category;
+        $this->category = $category;
     }
 
     /**
@@ -35,11 +34,11 @@ class CategoryController extends BaseController
     {
         $params = $request->all();
 
-        $this->check_category->pushCriteria(new CheckCategoryCriteria($params));
+        $this->category->pushCriteria(new CategoryCriteria($params));
 
-        $list = $this->check_category->paginate(Config::get('admin.page_size',10));
+        $list = $this->category->paginate(Config::get('admin.page_size',10));
 
-        return view('admin.check_category.index',compact('params','list'));
+        return view('admin.category.index',compact('params','list'));
     }
 
     /**
@@ -56,18 +55,17 @@ class CategoryController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CheckCategoryRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CheckCategoryRequest $request)
+    public function store(CategoryRequest $request)
     {
         $data = $request->filterAll();
 
-        $data = $this->check_category->create($data);
-        $this->check_category->updatePath($data['parent'],$data->id);
+        $data = $this->category->create($data);
 
         if($data){
-            return $this->ajaxSuccess(null,'添加成功',route('admin.check_category.index',array('parent' => $data['parent'])));
+            return $this->ajaxSuccess(null,'添加成功',route('admin.category.index'));
         }else{
             return $this->ajaxError('添加失败');
         }
@@ -81,7 +79,7 @@ class CategoryController extends BaseController
      */
     public function show($id)
     {
-        return view('admin.check_category.show');
+        return view('admin.category.show');
     }
 
     /**
@@ -96,60 +94,49 @@ class CategoryController extends BaseController
         $params = $request->all();
         $params['id'] = $id;
 
-        $data = $this->check_category->find($id);
-        return view('admin.check_category.edit',compact('data','params'));
+        $data = $this->category->find($id);
+        return view('admin.category.edit',compact('data','params'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CheckCategoryRequest|Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param CategoryRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(CheckCategoryRequest $request, $id)
+    public function update(CategoryRequest $request, $id)
     {
         $data = $request->filterAll();
 
         //获取分类信息
-        $category = $this->check_category->find($id);
+        $category = $this->category->find($id);
 
-        $result = $this->check_category->update($data,$id);
+        $result = $this->category->update($data,$id);
 
-        if(isset($category['parent'])){
-            return $this->ajaxAuto($result,'修改',route('admin.check_category.index',array('parent' => $category['parent'])));
-        }else{
-            return $this->ajaxAuto($result,'修改',route('admin.check_category.index'));
-
-        }
-
-
+        return $this->ajaxAuto($result,'修改',route('admin.category.index'));
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $info = $this->check_category->find($id);
+        $info = $this->category->find($id);
 
-        $result = $this->check_category->delete($id);
-
-        if($result){
-            //删除该自检类型下的自检内容
-            $test = CheckContent::where('type_second_id','=',$id)->delete();
-        }
+        $result = $this->category->delete($id);
 
         return $this->ajaxAuto($result,'删除');
     }
 
     /**
      * 获取下级自检分类
+     *
      * @param Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function getChildrenCategory(Request $request){
         $params = $request->all();
@@ -158,7 +145,7 @@ class CategoryController extends BaseController
         if(isset($params['id']) && !empty($params['id'])){
             $where['parent'] = $params['id'];
             $where['status'] = BasicEnum::ACTIVE;
-            $list = $this->check_category->findWhere($where);
+            $list = $this->category->findWhere($where);
         }
         return response()->json($list);
     }

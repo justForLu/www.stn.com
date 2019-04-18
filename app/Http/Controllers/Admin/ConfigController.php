@@ -3,26 +3,25 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
-use App\Models\Admin\CheckContent;
-use App\Http\Requests\Admin\CheckCategoryRequest;
-use App\Repositories\Admin\Criteria\CheckCategoryCriteria;
-use App\Repositories\Admin\CheckCategoryRepository as CheckCategory;
+use App\Http\Requests\Admin\ConfigRequest;
+use App\Repositories\Admin\Criteria\ConfigCriteria;
+use App\Repositories\Admin\ConfigRepository;
 use Illuminate\Http\Request;
 use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 
-class BannerController extends BaseController
+class ConfigController extends BaseController
 {
     /**
-     * @var CheckCategory
+     * @var Config
      */
-    protected $check_category;
+    protected $config;
 
-    public function __construct(CheckCategory $check_category)
+    public function __construct(ConfigRepository $config)
     {
         parent::__construct();
 
-        $this->check_category = $check_category;
+        $this->config = $config;
     }
 
     /**
@@ -35,11 +34,11 @@ class BannerController extends BaseController
     {
         $params = $request->all();
 
-        $this->check_category->pushCriteria(new CheckCategoryCriteria($params));
+        $this->config->pushCriteria(new ConfigCriteria($params));
 
-        $list = $this->check_category->paginate(Config::get('admin.page_size',10));
+        $list = $this->config->paginate(Config::get('admin.page_size',10));
 
-        return view('admin.check_category.index',compact('params','list'));
+        return view('admin.config.index',compact('params','list'));
     }
 
     /**
@@ -56,18 +55,17 @@ class BannerController extends BaseController
     /**
      * Store a newly created resource in storage.
      *
-     * @param CheckCategoryRequest|Request $request
-     * @return \Illuminate\Http\Response
+     * @param ConfigRequest $request
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(CheckCategoryRequest $request)
+    public function store(ConfigRequest $request)
     {
         $data = $request->filterAll();
 
-        $data = $this->check_category->create($data);
-        $this->check_category->updatePath($data['parent'],$data->id);
+        $data = $this->config->create($data);
 
         if($data){
-            return $this->ajaxSuccess(null,'添加成功',route('admin.check_category.index',array('parent' => $data['parent'])));
+            return $this->ajaxSuccess(null,'添加成功',route('admin.config.index'));
         }else{
             return $this->ajaxError('添加失败');
         }
@@ -96,52 +94,41 @@ class BannerController extends BaseController
         $params = $request->all();
         $params['id'] = $id;
 
-        $data = $this->check_category->find($id);
+        $data = $this->config->find($id);
         return view('admin.check_category.edit',compact('data','params'));
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param CheckCategoryRequest|Request $request
-     * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @param ConfigRequest $request
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
-    public function update(CheckCategoryRequest $request, $id)
+    public function update(ConfigRequest $request, $id)
     {
         $data = $request->filterAll();
 
         //获取分类信息
-        $category = $this->check_category->find($id);
+        $category = $this->config->find($id);
 
-        $result = $this->check_category->update($data,$id);
+        $result = $this->config->update($data,$id);
 
-        if(isset($category['parent'])){
-            return $this->ajaxAuto($result,'修改',route('admin.check_category.index',array('parent' => $category['parent'])));
-        }else{
-            return $this->ajaxAuto($result,'修改',route('admin.check_category.index'));
-
-        }
-
+        return $this->ajaxAuto($result,'修改',route('admin.config.index'));
 
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @param $id
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $info = $this->check_category->find($id);
+        $info = $this->config->find($id);
 
-        $result = $this->check_category->delete($id);
-
-        if($result){
-            //删除该自检类型下的自检内容
-            $test = CheckContent::where('type_second_id','=',$id)->delete();
-        }
+        $result = $this->config->delete($id);
 
         return $this->ajaxAuto($result,'删除');
     }
@@ -158,7 +145,7 @@ class BannerController extends BaseController
         if(isset($params['id']) && !empty($params['id'])){
             $where['parent'] = $params['id'];
             $where['status'] = BasicEnum::ACTIVE;
-            $list = $this->check_category->findWhere($where);
+            $list = $this->config->findWhere($where);
         }
         return response()->json($list);
     }
