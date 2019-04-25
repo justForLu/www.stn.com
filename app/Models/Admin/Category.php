@@ -2,16 +2,17 @@
 
 namespace App\Models\Admin;
 
-use App\Enums\ModuleEnum;
 use App\Models\Base;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Category extends Base
 {
+    use SoftDeletes;
     // 模型对应表名
     protected $table = 'category';
 
-    protected $fillable = ['name','parent','path','grade','status','sort'];
+    protected $fillable = ['name', 'type', 'sort', 'status', 'gmt_create', 'gmt_update', 'gmt_delete'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

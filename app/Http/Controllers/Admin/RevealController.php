@@ -7,7 +7,7 @@ use App\Http\Requests\Admin\RevealRequest;
 use App\Repositories\Admin\Criteria\RevealCriteria;
 use App\Repositories\Admin\RevealRepository as Reveal;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 class RevealController extends BaseController
@@ -48,8 +48,7 @@ class RevealController extends BaseController
      */
     public function create(Request $request)
     {
-        $params = $request->input();
-        return view('admin.reveal.create',compact('params'));
+        return view('admin.reveal.create');
     }
 
     /**
@@ -61,6 +60,9 @@ class RevealController extends BaseController
     public function store(RevealRequest $request)
     {
         $data = $request->filterAll();
+        //作者
+        $data['author'] = Auth::user()->username;
+        $data['manager_id'] = Auth::user()->id;
 
         $data = $this->reveal->create($data);
 
@@ -91,11 +93,10 @@ class RevealController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $params = $request->all();
-        $params['id'] = $id;
+        $reveal = $this->reveal->find($id);
+        $reveal->images = FileController::getFilePath($reveal->image);
 
-        $data = $this->reveal->find($id);
-        return view('admin.reveal.edit',compact('data','params'));
+        return view('admin.reveal.edit',compact('reveal'));
     }
 
     /**
@@ -108,9 +109,6 @@ class RevealController extends BaseController
     public function update(RevealRequest $request, $id)
     {
         $data = $request->filterAll();
-
-        //获取分类信息
-        $category = $this->reveal->find($id);
 
         $result = $this->reveal->update($data,$id);
 
@@ -126,10 +124,8 @@ class RevealController extends BaseController
      */
     public function destroy($id)
     {
-        $info = $this->reveal->find($id);
 
         $result = $this->reveal->delete($id);
-
 
         return $this->ajaxAuto($result,'删除');
     }

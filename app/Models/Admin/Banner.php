@@ -10,8 +10,8 @@ class Banner extends Base
     // 模型对应表名
     protected $table = 'banner';
 
-    protected $fillable = ['name','parent','path','grade','status','sort'];
+    protected $fillable = ['title', 'position', 'image', 'sort', 'status', 'gmt_create', 'gmt_update', 'gmt_delete'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

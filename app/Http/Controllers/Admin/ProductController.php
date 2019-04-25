@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Enums\BasicEnum;
+use App\Enums\CategoryTypeEnum;
 use App\Http\Requests\Admin\ProductRequest;
+use App\Models\Admin\Category;
 use App\Repositories\Admin\Criteria\ProductCriteria;
 use App\Repositories\Admin\ProductRepository as Product;
 use Illuminate\Http\Request;
@@ -35,10 +37,17 @@ class ProductController extends BaseController
         $params = $request->all();
 
         $this->product->pushCriteria(new ProductCriteria($params));
+        //产品类别
+        $category = Category::where('type', '=', CategoryTypeEnum::PRODUCT)->where('status', '=', BasicEnum::ACTIVE)->get();
 
         $list = $this->product->paginate(Config::get('admin.page_size',10));
+        //处理分类名称
+        foreach ($list as $key => $value){
+            $category_info = Category::find($value['type']);
+            $list[$key]['type'] = isset($category_info['name']) ? $category_info['name'] : '';
+        }
 
-        return view('admin.product.index',compact('params','list'));
+        return view('admin.product.index',compact('params','list','category'));
     }
 
     /**
@@ -48,8 +57,10 @@ class ProductController extends BaseController
      */
     public function create(Request $request)
     {
-        $params = $request->input();
-        return view('admin.product.create',compact('params'));
+        //产品类别
+        $category = Category::where('type', '=', CategoryTypeEnum::PRODUCT)->where('status', '=', BasicEnum::ACTIVE)->get();
+
+        return view('admin.product.create',compact('category'));
     }
 
     /**
@@ -91,11 +102,12 @@ class ProductController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $params = $request->all();
-        $params['id'] = $id;
+        $product = $this->product->find($id);
+        $product->image_path = array_values(FileController::getFilePath($product->image));
+        //产品类别
+        $category = Category::where('type', '=', CategoryTypeEnum::PRODUCT)->where('status', '=', BasicEnum::ACTIVE)->get();
 
-        $data = $this->product->find($id);
-        return view('admin.product.edit',compact('data','params'));
+        return view('admin.product.edit',compact('product','category'));
     }
 
     /**
@@ -108,9 +120,6 @@ class ProductController extends BaseController
     public function update(ProductRequest $request, $id)
     {
         $data = $request->filterAll();
-
-        //获取分类信息
-        $category = $this->product->find($id);
 
         $result = $this->product->update($data,$id);
 
@@ -125,10 +134,7 @@ class ProductController extends BaseController
      */
     public function destroy($id)
     {
-        $info = $this->product->find($id);
-
         $result = $this->product->delete($id);
-
 
         return $this->ajaxAuto($result,'删除');
     }

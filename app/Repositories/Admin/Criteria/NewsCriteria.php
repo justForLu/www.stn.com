@@ -28,6 +28,14 @@ class NewsCriteria extends Criteria {
             $model = $model->where('title', 'like','%' . $this->conditions['title'] . '%');
         }
 
+        if(isset($this->conditions['author']) && !empty($this->conditions['author'])){
+            $model = $model->where('author', 'like','%' . $this->conditions['author'] . '%');
+        }
+
+        if(isset($this->conditions['type']) && !empty($this->conditions['type'])){
+            $model = $model->where('type', '=',$this->conditions['type']);
+        }
+
         if(isset($this->conditions['status']) && !empty($this->conditions['status'])){
             $model = $model->where('status', '=',$this->conditions['status']);
         }

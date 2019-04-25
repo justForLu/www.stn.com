@@ -70,7 +70,7 @@ class MenuController extends BaseController
      * Store a newly created resource in storage.
      *
      * @param MenuRequest $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function store(MenuRequest $request)
     {
@@ -103,7 +103,6 @@ class MenuController extends BaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
@@ -140,7 +139,7 @@ class MenuController extends BaseController
      *
      * @param MenuRequest|Request $request
      * @param  int $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function update(MenuRequest $request, $id)
     {
@@ -168,10 +167,12 @@ class MenuController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        //
+        $result = $this->menu->delete($id);
+
+        return $this->ajaxAuto($result, '删除');
     }
 }

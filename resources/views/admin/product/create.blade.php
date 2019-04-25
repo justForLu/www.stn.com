@@ -1,30 +1,25 @@
 @extends('admin.layout.base')
 
 @section('content')
-{{--    <link rel="stylesheet" href="{{asset("/assets/plugins/ueditor/themes/default/css/umeditor.css")}}">--}}
-<style type="text/css">
-    .must{color: red; padding-right: 5px;}
-</style>
     <fieldset class="main-field main-field-title">
-        <legend>添加新闻</legend>
+        <legend>添加产品</legend>
     </fieldset>
     <section class="content">
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
-
-                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.news.store')!!}" method="post">
+                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.product.store')!!}" method="post">
                         <div class="box-body tab-content">
                             <div class="form-horizontal col-sm-10 tab-pane active"  style="margin:10px 20px;" id="tab1">
                                 <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻标题</label>
+                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>产品名称</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="title" class="form-control" placeholder="请输入新闻标题">
+                                        <input type="text" name="name" class="form-control" placeholder="请输入产品名称">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label">新闻分类</label>
+                                    <label for="name" class="col-sm-3 control-label">产品分类</label>
                                     <div class="col-sm-8">
                                         <select name="type" class="form-control">
                                             @foreach($category as $value)
@@ -34,7 +29,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image" class="col-sm-3 control-label"><span class="must">*</span>封页图片</label>
+                                    <label for="image" class="col-sm-3 control-label"><span class="must">*</span>产品展示图片</label>
                                     <div class="col-sm-8">
                                         <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-num="1">
                                         </div>
@@ -43,9 +38,23 @@
                                     <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻简介</label>
+                                    <label for="status" class="col-sm-3 control-label">产品简介</label>
                                     <div class="col-sm-8">
-                                        <textarea name="introduce" rows="4" class="form-control" placeholder="请输入新闻简介"></textarea>
+                                        <textarea name="synopsis" rows="4" class="form-control" placeholder="请输入产品简介"></textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-3 control-label">排序</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="sort" class="form-control" value="1" placeholder="请输入排序">
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">排序越小越靠前</span></div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-3 control-label">阅读量</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="read" class="form-control" placeholder="请输入阅读量">
                                     </div>
                                 </div>
                                 <div class="form-group">
@@ -55,33 +64,13 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="is_top" class="col-sm-3 control-label">是否置顶</label>
-                                    <div class="col-sm-8">
-                                        {{\App\Enums\BoolEnum::enumRadio(\App\Enums\BoolEnum::NO,'is_top')}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
                                     <label for="is_top" class="col-sm-3 control-label">是否推荐</label>
                                     <div class="col-sm-8">
                                         {{\App\Enums\BoolEnum::enumRadio(\App\Enums\BoolEnum::NO,'is_recommend')}}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>排序</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="sort" class="form-control" placeholder="请输入排序">
-                                    </div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">排序越小越靠前</span></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>阅读量</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="read" class="form-control" placeholder="请输入阅读量">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="billing" class="col-sm-3 control-label"><span class="must">*</span>新闻详情</label>
+                                    <label for="billing" class="col-sm-3 control-label"><span class="must">*</span>产品详情</label>
                                     <div class="col-sm-8">
                                         <script type="text/plain" name="content" id="editor" style="width:100%;height:400px;">
                                         </script>
@@ -94,7 +83,7 @@
                                 <button type="submit" class="btn btn-primary J_ajax_submit_btn">提交</button>
                             </div>
                             <div class="col-xs-2 col-md-1">
-                                <a href="{!! route('admin.news.index') !!}" class="btn btn-default">取消</a>
+                                <a href="{!! route('admin.product.index') !!}" class="btn btn-default">取消</a>
                             </div>
                         </div>
                     </form>

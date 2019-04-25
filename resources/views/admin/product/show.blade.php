@@ -2,8 +2,9 @@
 
 @section('content')
     <fieldset class="main-field main-field-title">
-        <legend>新闻查看</legend>
+        <legend>产品查看</legend>
     </fieldset>
+
     <section class="content">
         <div class="row">
             <div class="col-md-12">
@@ -17,6 +18,7 @@
             </div>
         </div>
         <div class="box-footer">
+
         </div>
     </section>
 @endsection

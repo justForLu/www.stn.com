@@ -2,30 +2,30 @@
 
 @section('content')
     <fieldset class="main-field main-field-title">
-        <legend>新闻编辑</legend>
+        <legend>产品编辑</legend>
     </fieldset>
     <section class="content">
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
-                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.news.update',array('id'=>$news['id']))!!}" method="post">
+                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.product.update',array('id'=>$product['id']))!!}" method="post">
                         <input type="hidden" name="_token" value="{{ csrf_token() }}">
                         <input type="hidden" name="_method" value="PUT">
-                        <input type="hidden" name="id" value="{{$news['id']}}">
+                        <input type="hidden" name="id" value="{{$product['id']}}">
                         <div class="box-body tab-content">
                             <div class="form-horizontal col-sm-10 tab-pane active"  style="margin:10px 20px;" id="tab1">
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻标题</label>
+                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>产品名称</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="title" value="{{$news->title}}" class="form-control" placeholder="请输入新闻标题">
+                                        <input type="text" name="name" value="{{$product->name}}" class="form-control" placeholder="请输入产品名称">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label">新闻分类</label>
+                                    <label for="name" class="col-sm-3 control-label">产品分类</label>
                                     <div class="col-sm-8">
                                         <select name="type" class="form-control">
                                             @foreach($category as $value)
-                                                @if(isset($news['type']) && ($news['type'] == $value['id']))
+                                                @if(isset($product['type']) && ($product['type'] == $value['id']))
                                                     <option value="{{$value['id']}}" selected="selected">{{$value['name']}}</option>
                                                 @else
                                                     <option value="{{$value['id']}}">{{$value['name']}}</option>
@@ -35,12 +35,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="image" class="col-sm-3 control-label"><span class="must">*</span>封页图片</label>
+                                    <label for="image" class="col-sm-3 control-label"><span class="must">*</span>产品展示图片</label>
                                     <div class="col-sm-8">
                                         <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-num="1">
-                                            @if(!empty($news->image))
-                                                <input type="hidden" name="image_val" value="{{ $news->image }}">
-                                                <input type="hidden" name="image_path[]" value="{{ $news->image_path[0] }}">
+                                            @if(!empty($product->image))
+                                                <input type="hidden" name="image_val" value="{{ $product->image }}">
+                                                <input type="hidden" name="image_path[]" value="{{ $product->image_path[0] }}">
                                             @endif
                                         </div>
                                     </div>
@@ -48,48 +48,40 @@
                                     <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻简介</label>
+                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>产品简介</label>
                                     <div class="col-sm-8">
-                                        <textarea name="introduce" rows="4" class="form-control" placeholder="请输入新闻简介">{{$news->introduce}}</textarea>
+                                        <textarea name="synopsis" rows="4" class="form-control" placeholder="请输入产品简介">{{$product->synopsis}}</textarea>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-3 control-label">排序</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="sort" class="form-control" value="{{$product->sort}}" placeholder="请输入排序">
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="status" class="col-sm-3 control-label">阅读量</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="read" class="form-control" value="{{$product->read}}" placeholder="请输入阅读量">
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="status" class="col-sm-3 control-label">状态</label>
                                     <div class="col-sm-2">
-                                        {{\App\Enums\BasicEnum::enumSelect($news->status,false,'status')}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="is_top" class="col-sm-3 control-label">是否置顶</label>
-                                    <div class="col-sm-8">
-                                        {{\App\Enums\BoolEnum::enumRadio($news->is_top,'is_top')}}
+                                        {{\App\Enums\BasicEnum::enumSelect($product->status,false,'status')}}
                                     </div>
                                 </div>
                                 <div class="form-group">
                                     <label for="is_top" class="col-sm-3 control-label">是否推荐</label>
                                     <div class="col-sm-8">
-                                        {{\App\Enums\BoolEnum::enumRadio($news->is_recommend,'is_recommend')}}
-                                    </div>
-                                </div>
-                                <div class="form-group gmt_release">
-                                    <label for="gmt_release" class="col-sm-3 control-label">排序</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" name="sort" class="form-control" value="{{$news->sort}}" placeholder="请输入排序">
-                                    </div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">排序越小越靠前</span></div>
-                                </div>
-                                <div class="form-group gmt_release">
-                                    <label for="gmt_release" class="col-sm-3 control-label">阅读量</label>
-                                    <div class="col-sm-3">
-                                        <input type="text" name="read" class="form-control" value="{{$news->read}}" placeholder="请输入阅读量">
+                                        {{\App\Enums\BoolEnum::enumRadio($product->is_top,'is_recommen')}}
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="billing" class="col-sm-3 control-label"><span class="must">*</span>新闻详情</label>
+                                    <label for="name" class="col-sm-3 control-label">联系我们内容</label>
                                     <div class="col-sm-8">
                                         <script type="text/plain" name="content" id="editor" style="font-size:10px;width:100%;height:400px;">
-                                            <?php echo $news->content ?>
+                                            <?php echo $product->content ?>
                                         </script>
                                     </div>
                                 </div>
@@ -100,7 +92,7 @@
                                 <button type="submit" class="btn btn-primary J_ajax_submit_btn">提交</button>
                             </div>
                             <div class="col-xs-2 col-md-1">
-                                <a href="{!! route('admin.news.index') !!}" class="btn btn-default">取消</a>
+                                <a href="{!! route('admin.product.index') !!}" class="btn btn-default">取消</a>
                             </div>
                         </div>
                     </form>

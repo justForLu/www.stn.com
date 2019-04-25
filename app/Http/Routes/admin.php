@@ -43,6 +43,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::post('/file/uploadFile','FileController@uploadFile');
         Route::resource('/news', 'NewsController');
         Route::resource('/about', 'AboutController');
+        Route::resource('/config', 'ConfigController');
         Route::resource('/banner', 'BannerController');
         Route::resource('/category', 'CategoryController');
         Route::resource('/contact', 'ContactController');

@@ -201,3 +201,8 @@ label {
     margin-left: 5px;
     margin-right: 5px;
 }
+
+/* 必填提示的星号 */
+.must{color: red; padding-right: 5px;}
+
+

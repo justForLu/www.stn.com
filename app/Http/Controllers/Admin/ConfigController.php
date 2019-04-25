@@ -2,12 +2,10 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Enums\BasicEnum;
+use App\Models\Admin\Config as ConfigModel;
 use App\Http\Requests\Admin\ConfigRequest;
-use App\Repositories\Admin\Criteria\ConfigCriteria;
 use App\Repositories\Admin\ConfigRepository;
 use Illuminate\Http\Request;
-use App\Http\Requests;
 use Illuminate\Support\Facades\Config;
 
 class ConfigController extends BaseController
@@ -27,59 +25,41 @@ class ConfigController extends BaseController
     /**
      * Display a listing of the resource.
      *
-     * @param Request $request
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
-        $params = $request->all();
+        $config = ConfigModel::first();
+        $code_path = array_values(FileController::getFilePath($config->code));
+        $config->code_path = isset($code_path[0]) ? $code_path[0] : '';
 
-        $this->config->pushCriteria(new ConfigCriteria($params));
-
-        $list = $this->config->paginate(Config::get('admin.page_size',10));
-
-        return view('admin.config.index',compact('params','list'));
+        return view('admin.config.index',compact('config'));
     }
 
     /**
      * Show the form for creating a new resource.
-     * @param Request $request
-     * @return \Illuminate\Http\Response
+     *
      */
-    public function create(Request $request)
+    public function create()
     {
-        $params = $request->input();
-        return view('admin.check_category.create',compact('params'));
+
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param ConfigRequest $request
-     * @return \Illuminate\Http\JsonResponse
      */
-    public function store(ConfigRequest $request)
+    public function store()
     {
-        $data = $request->filterAll();
-
-        $data = $this->config->create($data);
-
-        if($data){
-            return $this->ajaxSuccess(null,'添加成功',route('admin.config.index'));
-        }else{
-            return $this->ajaxError('添加失败');
-        }
     }
 
     /**
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return view('admin.check_category.show');
     }
 
     /**
@@ -91,11 +71,10 @@ class ConfigController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $params = $request->all();
-        $params['id'] = $id;
+        $config = $this->config->find($id);
+        $config->code_path = array_values(FileController::getFilePath($config->code));
 
-        $data = $this->config->find($id);
-        return view('admin.check_category.edit',compact('data','params'));
+        return view('admin.config.edit',compact('config'));
     }
 
     /**
@@ -109,9 +88,6 @@ class ConfigController extends BaseController
     {
         $data = $request->filterAll();
 
-        //获取分类信息
-        $category = $this->config->find($id);
-
         $result = $this->config->update($data,$id);
 
         return $this->ajaxAuto($result,'修改',route('admin.config.index'));
@@ -122,31 +98,9 @@ class ConfigController extends BaseController
      * Remove the specified resource from storage.
      *
      * @param $id
-     * @return \Illuminate\Http\JsonResponse
      */
     public function destroy($id)
     {
-        $info = $this->config->find($id);
-
-        $result = $this->config->delete($id);
-
-        return $this->ajaxAuto($result,'删除');
     }
 
-    /**
-     * 获取下级自检分类
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function getChildrenCategory(Request $request){
-        $params = $request->all();
-
-        $list = array();
-        if(isset($params['id']) && !empty($params['id'])){
-            $where['parent'] = $params['id'];
-            $where['status'] = BasicEnum::ACTIVE;
-            $list = $this->config->findWhere($where);
-        }
-        return response()->json($list);
-    }
 }

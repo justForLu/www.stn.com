@@ -10,8 +10,8 @@ class Contact extends Base
     // 模型对应表名
     protected $table = 'contact';
 
-    protected $fillable = ['name','parent','path','grade','status','sort'];
+    protected $fillable = ['qq', 'location', 'content', 'gmt_create', 'gmt_update', 'gmt_delete'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

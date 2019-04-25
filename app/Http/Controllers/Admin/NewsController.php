@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enums\BasicEnum;
+use App\Enums\CategoryTypeEnum;
+use App\Models\Admin\Category;
 use App\Models\Admin\News;
 use App\Http\Requests\Admin\NewsRequest;
 use App\Repositories\Admin\Criteria\NewsCriteria;
 use App\Repositories\Admin\NewsRepository;
 use Illuminate\Http\Request;
-use App\Http\Requests;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 
 class NewsController extends BaseController
@@ -35,10 +38,18 @@ class NewsController extends BaseController
         $params = $request->all();
 
         $this->news->pushCriteria(new NewsCriteria($params));
+        //新闻类别
+        $category = Category::where('type', '=', CategoryTypeEnum::NEWS)->where('status', '=', BasicEnum::ACTIVE)->get();
 
         $list = $this->news->paginate(Config::get('admin.page_size',10));
 
-        return view('admin.news.index',compact('params','list'));
+        //处理分类名称
+        foreach ($list as $key => $value){
+            $category_info = Category::find($value['type']);
+            $list[$key]['type'] = isset($category_info['name']) ? $category_info['name'] : '';
+        }
+
+        return view('admin.news.index',compact('params','list','category'));
     }
 
     /**
@@ -48,8 +59,10 @@ class NewsController extends BaseController
      */
     public function create()
     {
+        //新闻类别
+        $category = Category::where('type', '=', CategoryTypeEnum::NEWS)->where('status', '=', BasicEnum::ACTIVE)->get();
 
-        return view('admin.news.create');
+        return view('admin.news.create', compact('category'));
     }
 
     /**
@@ -61,30 +74,14 @@ class NewsController extends BaseController
     public function store(NewsRequest $request)
     {
         $data = $request->filterAll();
-        //检查图片尺寸是否符合690*284 px的限制
-        $image_id = isset($data['image']) ? $data['image'] : 0;
-        $image_path = array_values(FileController::getFilePath($image_id));
-        if(isset($image_path[0])){
-            $image_path = substr($image_path[0],1);
-            if(file_exists($image_path)){
-                $image_info = getimagesize($image_path);
-                if(isset($image_info[0]) && ($image_info[0] != 690)){
-                    return $this->ajaxError('请上传宽度为690px的封页图片');
-                }elseif(isset($image_info[1]) && ($image_info[1] != 284)){
-                    return $this->ajaxError('请上传高度为284px的封页图片');
-                }
-            }
-        }
-        //检查图片尺寸是否符合690*284 px的限制   END
+        //作者
+        $data['author'] = Auth::user()->username;
+        $data['manager_id'] = Auth::user()->id;
+
         $data['content'] = htmlspecialchars_decode($data['content']);
         //创建时间
         $data['gmt_create'] = get_date();
-        //如果是立即发布，将发布时间设为0（为防止gmt_release会有值）
-        if($data['release_type'] == 2){
-            $data['gmt_release'] = 0;
-        }else{
-            $data['gmt_create'] = $data['gmt_release'];
-        }
+
         //如果置顶了，把其他的置顶改为0
         if($data['is_top'] == 1){
             $update_data['is_top'] = 0;
@@ -108,19 +105,6 @@ class NewsController extends BaseController
      */
     public function show($id)
     {
-        $news = $this->news->find($id);
-        $news->image_path = array_values(FileController::getFilePath($news->image));
-        if($news->image_path){
-            $news->image = $news->image_path[0];
-        }else{
-            $news->image = '';
-        }
-        if($news->release_type == 1){
-            $news->release = $news->gmt_create;
-        }else{
-            $news->release = '立即发布';
-        }
-
         return view('admin.news.show',compact('news'));
     }
 
@@ -136,7 +120,10 @@ class NewsController extends BaseController
         $news = $this->news->find($id);
         $news->image_path = array_values(FileController::getFilePath($news->image));
         $news->content = htmlspecialchars_decode($news->content);
-        return view('admin.news.edit',compact('news'));
+        //新闻类别
+        $category = Category::where('type', '=', CategoryTypeEnum::NEWS)->where('status', '=', BasicEnum::ACTIVE)->get();
+
+        return view('admin.news.edit',compact('news','category'));
     }
 
     /**
@@ -149,30 +136,8 @@ class NewsController extends BaseController
     public function update(NewsRequest $request, $id)
     {
         $data = $request->filterAll();
-        //检查图片尺寸是否符合690*284 px的限制
-        $image_id = isset($data['image']) ? $data['image'] : 0;
-        $image_path = array_values(FileController::getFilePath($image_id));
-        if(isset($image_path[0])){
-            $image_path = substr($image_path[0],1);
-            if(file_exists($image_path)){
-                $image_info = getimagesize($image_path);
-                if(isset($image_info[0]) && ($image_info[0] != 690)){
-                    return $this->ajaxError('请上传宽度为690px的封页图片');
-                }elseif(isset($image_info[1]) && ($image_info[1] != 284)){
-                    return $this->ajaxError('请上传高度为284px的封页图片');
-                }
-            }
-        }
-        //检查图片尺寸是否符合690*284 px的限制   END
+
         $data['content'] = htmlspecialchars_decode($data['content']);
-        //修改时间
-        $data['gmt_update'] = get_date();
-        //如果是立即发布，将发布时间设为0（为防止gmt_release会有值）
-        if($data['release_type'] == 2){
-            $data['gmt_release'] = 0;
-        }else{
-            $data['gmt_create'] = $data['gmt_release'];
-        }
 
         //如果置顶了，把其他的置顶改为0
         if($data['is_top'] == 1){
@@ -193,7 +158,6 @@ class NewsController extends BaseController
      */
     public function destroy($id)
     {
-
         $result = $this->news->delete($id);
 
         return $this->ajaxAuto($result,'删除');

@@ -49,7 +49,7 @@ class CategoryController extends BaseController
     public function create(Request $request)
     {
         $params = $request->input();
-        return view('admin.check_category.create',compact('params'));
+        return view('admin.category.create',compact('params'));
     }
 
     /**
@@ -75,11 +75,9 @@ class CategoryController extends BaseController
      * Display the specified resource.
      *
      * @param  int  $id
-     * @return \Illuminate\Http\Response
      */
     public function show($id)
     {
-        return view('admin.category.show');
     }
 
     /**
@@ -91,11 +89,9 @@ class CategoryController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $params = $request->all();
-        $params['id'] = $id;
+        $category = $this->category->find($id);
 
-        $data = $this->category->find($id);
-        return view('admin.category.edit',compact('data','params'));
+        return view('admin.category.edit',compact('category'));
     }
 
     /**
@@ -108,9 +104,6 @@ class CategoryController extends BaseController
     public function update(CategoryRequest $request, $id)
     {
         $data = $request->filterAll();
-
-        //获取分类信息
-        $category = $this->category->find($id);
 
         $result = $this->category->update($data,$id);
 
@@ -132,21 +125,4 @@ class CategoryController extends BaseController
         return $this->ajaxAuto($result,'删除');
     }
 
-    /**
-     * 获取下级自检分类
-     *
-     * @param Request $request
-     * @return \Illuminate\Http\JsonResponse
-     */
-    public function getChildrenCategory(Request $request){
-        $params = $request->all();
-
-        $list = array();
-        if(isset($params['id']) && !empty($params['id'])){
-            $where['parent'] = $params['id'];
-            $where['status'] = BasicEnum::ACTIVE;
-            $list = $this->category->findWhere($where);
-        }
-        return response()->json($list);
-    }
 }

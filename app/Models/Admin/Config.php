@@ -10,8 +10,8 @@ class Config extends Base
     // 模型对应表名
     protected $table = 'config';
 
-    protected $fillable = ['name','parent','path','grade','status','sort'];
+    protected $fillable = ['company', 'phone', 'mobile', 'wechat', 'copyright', 'code', 'reveal', 'address', 'gmt_create', 'gmt_update'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

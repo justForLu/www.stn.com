@@ -10,8 +10,9 @@ class News extends Base
     // 模型对应表名
     protected $table = 'news';
 
-    protected $fillable = ['title','content','image','introduce','release_type','gmt_release','gmt_create','gmt_update','status','is_top'];
+    protected $fillable = ['title', 'image', 'type', 'introduce', 'content', 'author', 'manager_id', 'is_top', 'sort',
+        'is_recommend', 'status', 'read', 'gmt_create', 'gmt_create', 'gmt_update'];
 
-    public $timestamps = false;
+    public $timestamps = true;
 
 }

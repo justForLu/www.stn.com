@@ -48,8 +48,7 @@ class BannerController extends BaseController
      */
     public function create(Request $request)
     {
-        $params = $request->input();
-        return view('admin.banner.create',compact('params'));
+        return view('admin.banner.create');
     }
 
     /**
@@ -79,7 +78,11 @@ class BannerController extends BaseController
      */
     public function show($id)
     {
-        return view('admin.banner.show');
+        $banner = $this->banner->find($id);
+        $image_path = array_values(FileController::getFilePath($banner->image));
+        $banner->image_path = isset($image_path[0]) ? $image_path[0] : '';
+
+        return view('admin.banner.show', compact('banner'));
     }
 
     /**
@@ -91,11 +94,10 @@ class BannerController extends BaseController
      */
     public function edit($id,Request $request)
     {
-        $params = $request->all();
-        $params['id'] = $id;
+        $banner = $this->banner->find($id);
+        $banner->image_path = array_values(FileController::getFilePath($banner->image));
 
-        $data = $this->banner->find($id);
-        return view('admin.banner.edit',compact('data','params'));
+        return view('admin.banner.edit',compact('banner'));
     }
 
     /**
@@ -108,9 +110,6 @@ class BannerController extends BaseController
     public function update(BannerRequest $request, $id)
     {
         $data = $request->filterAll();
-
-        //获取分类信息
-        $category = $this->banner->find($id);
 
         $result = $this->banner->update($data,$id);
 
@@ -127,27 +126,9 @@ class BannerController extends BaseController
      */
     public function destroy($id)
     {
-        $info = $this->banner->find($id);
-
         $result = $this->banner->delete($id);
 
         return $this->ajaxAuto($result,'删除');
     }
 
-    /**
-     * 获取下级自检分类
-     * @param Request $request
-     * @return \Illuminate\Http\Response
-     */
-    public function getChildrenCategory(Request $request){
-        $params = $request->all();
-
-        $list = array();
-        if(isset($params['id']) && !empty($params['id'])){
-            $where['parent'] = $params['id'];
-            $where['status'] = BasicEnum::ACTIVE;
-            $list = $this->banner->findWhere($where);
-        }
-        return response()->json($list);
-    }
 }

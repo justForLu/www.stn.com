@@ -1,89 +1,39 @@
 @extends('admin.layout.base')
 
 @section('content')
-{{--    <link rel="stylesheet" href="{{asset("/assets/plugins/ueditor/themes/default/css/umeditor.css")}}">--}}
-<style type="text/css">
-    .must{color: red; padding-right: 5px;}
-</style>
     <fieldset class="main-field main-field-title">
-        <legend>添加新闻</legend>
+        <legend>关于我们编辑</legend>
     </fieldset>
     <section class="content">
         <div class="row">
             <div class="col-md-12">
                 <div class="box">
-
-                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.news.store')!!}" method="post">
+                    <form class="J_ajaxForm" role="form" id="form" action="{!!route('admin.about.update',array('id'=>$about['id']))!!}" method="post">
+                        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                        <input type="hidden" name="_method" value="PUT">
+                        <input type="hidden" name="id" value="{{$about['id']}}">
                         <div class="box-body tab-content">
                             <div class="form-horizontal col-sm-10 tab-pane active"  style="margin:10px 20px;" id="tab1">
-                                <input type="hidden" name="_token" value="{{ csrf_token() }}">
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻标题</label>
+                                    <label for="image" class="col-sm-3 control-label">关于我们展示图片</label>
                                     <div class="col-sm-8">
-                                        <input type="text" name="title" class="form-control" placeholder="请输入新闻标题">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label">新闻分类</label>
-                                    <div class="col-sm-8">
-                                        <select name="type" class="form-control">
-                                            @foreach($category as $value)
-                                                <option value="{{$value['id']}}">{{$value['name']}}</option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="image" class="col-sm-3 control-label"><span class="must">*</span>封页图片</label>
-                                    <div class="col-sm-8">
-                                        <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-num="1">
+                                        <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-type="multiple" data-num="5">
+                                            @if(!empty($about->images))
+                                                @foreach($about->images as $key => $value )
+                                                    <input type="hidden" name="image_val" value="{{ $about->image }}">
+                                                    <input type="hidden" name="image_path[]" value="{{ $value }}">
+                                                @endforeach
+                                            @endif
                                         </div>
                                     </div>
                                     <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
+                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">389*409 </span>px</span></div>
                                 </div>
                                 <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>新闻简介</label>
+                                    <label for="name" class="col-sm-3 control-label">关于我们内容</label>
                                     <div class="col-sm-8">
-                                        <textarea name="introduce" rows="4" class="form-control" placeholder="请输入新闻简介"></textarea>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="status" class="col-sm-3 control-label">状态</label>
-                                    <div class="col-sm-2">
-                                        {{\App\Enums\BasicEnum::enumSelect(\App\Enums\BasicEnum::ACTIVE,false,'status')}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="is_top" class="col-sm-3 control-label">是否置顶</label>
-                                    <div class="col-sm-8">
-                                        {{\App\Enums\BoolEnum::enumRadio(\App\Enums\BoolEnum::NO,'is_top')}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="is_top" class="col-sm-3 control-label">是否推荐</label>
-                                    <div class="col-sm-8">
-                                        {{\App\Enums\BoolEnum::enumRadio(\App\Enums\BoolEnum::NO,'is_recommend')}}
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>排序</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="sort" class="form-control" placeholder="请输入排序">
-                                    </div>
-                                    <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">排序越小越靠前</span></div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="name" class="col-sm-3 control-label"><span class="must">*</span>阅读量</label>
-                                    <div class="col-sm-8">
-                                        <input type="text" name="read" class="form-control" placeholder="请输入阅读量">
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label for="billing" class="col-sm-3 control-label"><span class="must">*</span>新闻详情</label>
-                                    <div class="col-sm-8">
-                                        <script type="text/plain" name="content" id="editor" style="width:100%;height:400px;">
+                                        <script type="text/plain" name="content" id="editor" style="font-size:10px;width:100%;height:400px;">
+                                            <?php echo $about->content ?>
                                         </script>
                                     </div>
                                 </div>
@@ -94,7 +44,7 @@
                                 <button type="submit" class="btn btn-primary J_ajax_submit_btn">提交</button>
                             </div>
                             <div class="col-xs-2 col-md-1">
-                                <a href="{!! route('admin.news.index') !!}" class="btn btn-default">取消</a>
+                                <a href="{!! route('admin.about.index') !!}" class="btn btn-default">取消</a>
                             </div>
                         </div>
                     </form>
@@ -108,9 +58,7 @@
     <script src="{{asset("/assets/plugins/ueditor/ueditor.config.js")}}"></script>
     <script src="{{asset("/assets/plugins/ueditor/ueditor.all.min.js")}}"></script>
     <script src="{{asset("/assets/plugins/ueditor/lang/zh-cn/zh-cn.js")}}"></script>
-
     <script type="text/javascript">
-
         //实例化编辑器
         //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
         var ue = UE.getEditor('editor');
@@ -224,5 +172,4 @@
 
     </script>
 @endsection
-
 
