@@ -1,0 +1,55 @@
+﻿/*公共右侧客户样式*/
+.side {
+	position: fixed;
+	width: 50px;
+	height: 221px;
+	right: 0;
+	top: 350px;
+	z-index: 100;
+}
+.side ul{ height:203px; background:url(../images/sidebar_bg.jpg);}
+.side ul li {
+	width: 50px;
+	height: 50px;
+	float: left;
+	position: relative;
+	border-bottom: 1px solid rgba(255, 255,255, 0.2);
+}
+.side ul li img { background:none;}
+.side ul li .sidebar_qq , .side ul li .sidebar_phone , .side ul li #moquu_wxin , .side ul li .sidetop {background:url(../images/sidebar_bg.jpg);}
+
+.side ul li .sidebar_qq{ background-position:0 200px;}
+.side ul li .sidebar_phone{ background-position:0 150px;}
+.side ul li #moquu_wxin{ background-position:0 100px;}
+.side ul li .sidetop{ background-position:0 50px;}
+
+.side ul li .sidebar_qq, .sidebar_phone , #moquu_wxin {
+	position: absolute;
+	width: 50px;
+	height: 50px;
+	top: 0;
+	right: 0;
+	transition: all 0.3s;
+	color: #fff;
+	font: 14px/50px "微软雅黑";
+	overflow: hidden;
+}
+.side ul li .sidetop {
+	width: 50px;
+	height: 50px;
+	line-height: 50px;
+	display: inline-block;
+	transition: all 0.3s;
+}
+.side ul li img {
+	float: left;
+}
+.weixin {
+	position: absolute;
+	display: none;
+	left: -210px;
+	top: -75px;
+	width: 204px;
+	height: 284px;
+	background: transparent url("../images/weixin_right.png") no-repeat scroll 0px -2px;
+}

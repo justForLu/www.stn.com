@@ -1,0 +1,1 @@
+(function(){ window.BMap_loadScriptTime = (new Date).getTime(); window.BMap=window.BMap||{};window.BMap.apiLoad=function(){delete window.BMap.apiLoad;if(typeof map_func=="function"){map_func()}};var s=document.createElement('script');s.src='http://api.map.baidu.com/getscript?v=2.0&ak=aL2Gwp389Kxj3bFhSMq7cf9w&services=&t=20190123111209';document.body.appendChild(s);})();

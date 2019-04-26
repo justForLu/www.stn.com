@@ -1,0 +1,157 @@
+﻿/* 初始化CSS 公共样式*/
+body{ margin:0px; padding:0px;font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size: 12px;line-height: 180%;color: #000000; *overflow-x:hidden;min-width:1210px;}
+html, body, div, p, ul, li, dl, dt, dd, h1, h2, h3, h4, h5, h6, form, input, select, button, textarea, iframe, table, th, td,i,em {margin: 0;padding: 0;list-style-type: none; font-style:normal}
+a{ bblr:expression(this.onFocus=this.blur());/*IE使用*/ outline-style:none;/*FF使用*/ }
+a:link {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:12px;color: #000000;text-decoration: none;}
+a:visited {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:12px;color:#000000;text-decoration: none;}
+a:hover {font-family: "微软雅黑", "宋体", Arial, Helvetica, sans-serif;font-size:12px;text-decoration: none;}
+img{border:none;}
+
+.main{ width:100%; margin:auto; overflow:hidden}
+.mainmid{ width:100%; margin:auto; overflow:hidden;}
+.f{ float:left}
+.r{ float:right}
+.relative{ position:relative; width:1210px; margin:0 auto;}
+.m_auto{ display:block; margin:0 auto;}
+.w1000{ width:1000px; margin:0 auto;}
+.none { display:none;}
+
+.paddt15{ padding-top:15px;}
+.paddt25{ padding-top:25px;}
+.paddt35{ padding-top:35px;}
+.paddt55{ padding-top:55px;}
+.paddt60{ padding-top:60px;}
+.paddt70{ padding-top:70px;}
+.paddt170{ padding-top:170px;}
+.paddb35{ padding-bottom:35px;}
+.paddb50{ padding-bottom:50px;}
+.paddb80{ padding-bottom:80px;}
+.paddl100{ padding-left:100px;}
+.paddl260{ padding-left:260px;}
+.paddr140{ padding-right:140px;}
+
+.mart60{ margin-top:60px;}
+.mart110{ margin-top:110px;}
+.marl44{ margin-left:44px;}
+.marl120{ margin-left:120px;}
+.h20{ height:20px;}
+.h45{ height:45px;}
+.h500{ height:500px;}
+.h670{ height:670px;}
+.h720{ height:720px;}
+
+.rout_bg h2{font-weight: normal;font-size:40px; color:#010101; line-height:180%; padding-top:30px;}
+.rout_bg p{ font-size:22px; color:#646464; margin:0 auto; text-align:center; line-height:180%;font-weight: normal;}
+h2.white , p.white{ color:#000;}
+
+
+.bg2 h2{font-size: 40px;color: #fff;text-align: center;padding: 60px;font-weight: normal;}
+.bg2 p{font-size: 20px;color: #fff;text-align: center;}
+/*背景图*/
+.bg1{ background:url(../images/bg1.jpg) no-repeat center; height:670px;}
+.bg2{ background:url(../images/waimai-mode_bg.jpg) no-repeat center top; height:850px;background-size: 100% 100%;}
+.bg3{ background:url(../images/bg3.jpg) no-repeat center; height:670px; margin-top:100px;}
+.bg4{ background:url(../images/bg4.jpg) no-repeat center; height:670px;}
+.bg5{ background:url(../images/bg5.jpg) no-repeat center; height:670px;}
+.bg6{ background:#393939; height:670px;}
+
+/*导航*/
+.w1210{width:1210px;margin:0 auto; overflow:hidden;}
+.header{background: url(../images/banner.png) no-repeat center; height:650px;}
+.headerBar{height:70px; line-height:70px; margin:auto; width:100%;background-color:#272727; }
+.logo{ float:left;}
+
+.banner_font1{ padding: 50px 0 0 380px;}
+.banner_font2{ padding-left:380px;}
+
+
+/*新导航*/
+
+.nav_content{width:1210px; margin:0 auto; overflow:hidden;}
+.logo{float:left; padding-top:10px;}
+.nav{position:relative;float:right;height:70px;background:#272727;overflow:hidden}
+.nav-item{position:relative;float:left;width:100px;height:70px;line-height:70px;text-align:center;font-size:14px;z-index:1}
+.nav-item a{display:block;height:70px;color:#fff;font-size:16px;}
+.nav-item a:hover{color:#fff;}
+.move-bg{display:none;position:absolute;left:0;top:0;width:100px;height:70px;background:#414141;z-index:0}
+.ys_btn{ position:relative; z-index:9999; padding-left: 20px; top: 19px; float:right;}
+a.banner-btn{ background:#F9CD02;width: 180px;height:55px;line-height: 55px;display: block;font-size: 26px;color: #FFF;text-align: center; border-radius: 8px; float:right; margin:30px 410px 0 0;}
+
+
+
+/*击破传统物流痛点*/
+.rout_bg{ width:100%; background:#fff;}
+.rout{ width:1064px; margin:50px auto 0;padding-bottom: 60px; overflow:hidden;}
+.rout dl { float:left; padding:0 50px; width:166px;}
+.rout dl dt{ height:166px; /*background:url(../images/anli.png);*/}
+.rout dl dt.rout_icon1{ background-position:0 0;}
+.rout dl dt.rout_icon2{ background-position:-168px 0;}
+.rout dl dt.rout_icon3{ background-position:-337px 0;}
+.rout dl dt.rout_icon4{ background-position:right 0;}
+.rout dl dd{ padding-top:25px;text-align:center;color:#000;font-size:18px;line-height:160%;font-weight: normal;padding-left: 25px;}
+.rout dl p{padding-left:15px;}
+
+/*视频介绍*/
+.blue_bg{ background:#CFEFFC;}
+.blue_bg h2{font-size: 40px;color: #000;text-align: center;padding: 100px;font-weight: normal;}
+.video_box{ width:1092px; height:598px; background:url(../images/zb.png) no-repeat center center;background-size: 100% 100%; margin:-85px auto 0;}
+
+/*视频切换*/
+.picScroll{ position:relative;overflow:hidden; width:770px; margin:0 auto; padding:38px 150px 0;}
+.picScroll .prev,
+.picScroll .next{ display:block; position:absolute; top:200px; left:5px; width:54px; height:118px; background:url(../images/video_btn.png) no-repeat;}
+.picScroll .next{ left:auto; right:5px; background-position:right 0; }
+.picScroll ul{ overflow:hidden; zoom:1;}
+.picScroll ul li{ width:770px; height:481px; float:left;overflow:hidden;}
+
+/*翼物流六大优势*/
+.gary_bg{ background:#f1f1f1;}
+.gary_bg h2{font-size: 40px;text-align: center;padding: 60px;font-weight: normal;}
+.gray_bg .advantage h1{font-size:16px; width:110px; color:#222; margin:0 auto; margin-top:20px;}
+.advantage{ overflow:hidden; width:1070px; margin:50px auto 30px;}
+.advantage dl { float:left; width:182px;padding: 0 16px;}
+.advantage dl dt{ width:140px; height:140px; display:block; background:url(../images/advantage.png); margin:0 auto;}
+.advantage dl dt.adv_icon1{ background-position:0 0;}
+.advantage dl dt.adv_icon2{ background-position:-142px 0;}
+.advantage dl dt.adv_icon3{ background-position:-284px 0;}
+.advantage dl dt.adv_icon4{ background-position:-426px 0;}
+.advantage dl dt.adv_icon5{ background-position:right 0;}
+.advantage dl dt.adv_icon6{ background-position:0 -152px;}
+.advantage dl dt.adv_icon7{ background-position:-142px -152px;}
+.advantage dl dt.adv_icon8{ background-position:-284px -152px;}
+.advantage dl dt.adv_icon9{ background-position:-426px -152px;}
+.advantage dl dt.adv_icon10{ background-position:right -152px;}
+.advantage dl dd{ text-align:center;font-size:14px; color:#646464; padding-top:24px;}
+
+.long_line{ width:100%; height:7px; background:url(../images/long_line.png) no-repeat center;}
+.linefont_box { overflow:hidden;width:785px;margin:0 auto;padding:35px 0;}
+.linefont{ width:167px; padding:0 45px; line-height:200%;text-align:center;}
+.linefont dt{ color:#1a87c8; font-size:20px; padding-bottom:12px;}
+.linefont dd{ color:#646464; font-size:14px;}
+.short_line{ width:7px; height:120px;background:url(../images/short_line.png) no-repeat center;}
+
+/*同城短距离配送系统*/
+.short_dis { background:url(../images/hudong.png) no-repeat center;height: 455px; margin-top:28px;}
+.short_dis dl{ position:absolute;color:#FFF; width:205px;}
+.short_dis dl.short_dis1{ top:62px; left:138px; text-align:right;}
+.short_dis dl.short_dis2{ top:310px; left:138px; text-align:right;}
+.short_dis dl.short_dis3{ top:62px; right:138px; text-align:left;}
+.short_dis dl.short_dis4{ top:310px; right:138px; text-align:left;}
+.short_dis dl dt{ font-size:20px; padding-bottom:12px;}
+.short_dis dl dd{ font-size:14px;}
+
+/*翼物流生态模式*/
+.logistics_img{width:1200px;height:800px; background:url(../images/duibiyoushi.png) no-repeat center center;margin:0 auto; padding-left:100px; margin-top:50px; position:relative;}
+.big-link2{display:block;width:230px;height:58px;line-height:44px;position:absolute;bottom:36px;left:284px;text-align:center; cursor:pointer;}
+
+/*用户角色权限*/
+.role{padding: 70px 120px 0 0;}
+.role li{ background:url(../images/rolebg.png) no-repeat center; width:480px; height:83px; color:#FFF; padding:12px 0;}
+.role li span{ display:block; float:left;}
+.role_title{font-size:22px;width:66px;line-height: 130%;text-align: center;}
+.role_font{font-size:14px; width:365px; line-height:160%;}
+.rolepadd1{padding:12px 0 0 9px;}
+.rolepadd2{padding:26px 0 0 9px;}
+.rolepadd3{padding:19px 0 0 18px;}
+.rolepadd4{padding:9px 0 0 18px;}
+

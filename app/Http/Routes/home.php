@@ -22,8 +22,8 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     Route::any('/index','IndexController@index');
 
     Route::group(['middleware'=>'api'],function (){
-        Route::any('/course/index','CourseController@index');
-        Route::any('/course/details/{id}','CourseController@details');
+        Route::any('/course/index','RevealController@index');
+        Route::any('/course/details/{id}','RevealController@details');
         Route::any('/news/index','NewsController@index');
         Route::any('/news/details/{id}','NewsController@details');
         Route::any('/news/mall','NewsController@mall');

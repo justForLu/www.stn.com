@@ -1,0 +1,112 @@
+﻿* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-size:12px;
+}
+ul, li {
+	list-style:none;
+}
+.float-contact-mini {
+	position: absolute;
+	right: 1px;
+	top: 175px;
+}
+.float-contact-mini a {
+	background:url(../images/sprites.png) no-repeat scroll 0 0 transparent;
+	color: #FFFFFF !important;
+	display: block;
+	height: 65px;
+	line-height: 110%;
+	padding: 46px 5px 0;
+	text-align: center;
+	text-decoration: none !important;
+	width: 18px;
+}
+.float-contact {
+	display: none;
+	position: absolute;
+	right: 1px;
+	top: 175px;
+	width: 102px;
+}
+.float-contact .close_rr {
+	background:url(../images/sprites.png) no-repeat scroll -29px 0 transparent;
+	color: #fff;
+	display: block;
+	width:102px;
+	height: 31px;
+	line-height: 31px;
+	padding-left: 22px;
+	text-decoration: none !important;
+}
+.float-contact .container_r {
+	background:#FFFFFF;
+	border-color: #E3E3E3;
+	border-style: solid;
+	border-width: 0 1px;
+	padding: 1px 0;
+	text-align: center;
+}
+.float-contact .container_r {
+	border-style: solid;
+	text-align: center;
+}
+.float-contact .qq {
+	padding: 7px 0 6px; height:250px;
+}
+.float-contact .qqtitle {
+	line-height: 200%;
+	
+	
+}
+.float-contact .qq .btn {
+	padding-top: 4px;
+}
+.float-contact .qq .btn li {
+	padding-bottom: 15px;
+}
+.float-contact .qq .btn a {
+	background:url(../images/button_11.gif) no-repeat scroll 0px 0px transparent;
+	color: #1A649D;
+	display: block;
+	height: 23px;
+	line-height: 23px;
+	margin: 0 auto;
+	padding-left: 23px;
+	width: 55px;
+	text-decoration: none;
+}
+.float-contact .qqtel {
+	background: url(../images/shadow-2.png) repeat-x scroll 0 100% transparent;
+	padding-bottom: 14px;
+}
+.float-contact .qqtel .qqcontent {
+	color: #da0909;
+	font-size: 100%;
+	font-weight: bold;
+	line-height: 25px;
+	letter-spacing:0;
+}
+.float-contact .qqtel .qqxian{
+	line-height:3px;
+	height:3px;
+	/*margin-top:3px;
+	margin-bottom:3px;*/
+	
+	}
+.float-contact .myqqlink {
+	background:url(../images/bg-x.png) repeat-x scroll 0 -320px #da0909;
+	border-bottom: 1px solid #E3E3E3;
+	color: #FFFFFF !important;
+	display: block;
+	height: 30px;
+	line-height: 30px;
+	text-align: center;
+	text-decoration: none !important;
+}
+h3.qqtitle {
+	margin:0;
+	padding:0;
+}

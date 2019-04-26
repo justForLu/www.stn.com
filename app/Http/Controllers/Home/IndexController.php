@@ -11,7 +11,6 @@ class IndexController extends BaseController
 
     }
 
-
     public function index()
     {
         return redirect('/home/course/index');

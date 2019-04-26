@@ -1,0 +1,207 @@
+﻿footer{
+    width: 100%;
+    background-color: #323232;
+    color: #969696;
+    padding: 56px 0 86px;
+}
+footer .v-center{
+    width: 1200px;
+    padding: 0 0 40px;
+    border-bottom: 1px solid #969696;
+    margin: 0 auto;
+    position: relative;
+}
+footer ul li{
+    float: left;
+}
+footer .v-about li{
+    width: 20%;
+    margin-right: 0;
+    width: auto;
+}
+footer .v-about li:not(:last-child){
+    margin-right: 160px;
+}
+footer .v-about li a{
+    font-size: 24px;
+    color: #fff;
+    border-bottom: 1px solid rgba(0,0,0,0);
+    text-align: left;
+}
+footer .v-about li a:hover{
+    border-bottom: 1px solid #FF0000;
+}
+footer .v-friendship-link{
+    margin-top: 40px;
+    text-align: left;
+    margin-bottom: 45px;
+}
+footer .v-friendship-link .v-title{
+    font-size: 18px;
+    margin-bottom: 30px;
+    position: relative;
+    top: 0;
+    left: 0;
+}
+footer .v-friendship-link a{
+    font-size: 18px;
+    margin-right: 35px;
+    color: #969696;
+}
+footer .v-friendship-link a:hover{
+    color: #FF0000;
+}
+footer .v-code{
+    position: absolute;
+    right: 80px;
+    bottom: 30px;
+}
+footer .v-code p{
+    text-align: center;
+    font-size: 16px;
+}
+footer p{
+    font-size: 18px;
+    color: #969696;
+    margin-bottom: 17px;
+}
+footer p img{
+    display: inline-block;
+    margin-right: 5px;
+}
+footer p span{
+    display: inline-block;
+    margin-right: 15px;
+}
+footer p a{
+    font-size: 18px;
+    color: #969696;
+    margin-bottom: 17px;
+}
+footer .privacy {
+    text-align: center;
+    padding-top: 17px;
+}
+footer .privacy a {
+    color: #969696;
+    padding: 0 20px;
+}
+footer .privacy a:hover {
+    color: #ff3333;
+}
+footer .backtoTopBox {
+    /*width:200px;*/
+    height: 200px;
+    position: fixed;
+    right: 20px;
+    bottom: 120px;
+    text-align: right;
+    z-index: 99999999;
+}
+footer .backtoTopBox div {
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    border-radius: 3px;
+    background-color: #fff;
+    background-image: url(../images/zaixianzixun.png);
+    background-position: center center;
+    background-repeat: no-repeat;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+    box-shadow: 1px 1px 1px rgba(0, 0, 0, .3);
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+footer .backtoTopBox div b {
+    opacity: 0;
+    font-size: 17px;
+    padding: 12.5px;
+    color: #fff;
+    position: relative;
+}
+
+footer .backtoTopBox div:nth-of-type(1) b {
+    position: relative;
+    right: 0px;
+    white-space: nowrap;
+    line-height: 60px;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+footer .backtoTopBox div:nth-of-type(2) b {
+    white-space: nowrap;
+    line-height: 60px;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+footer .backtoTopBox div.footerHelp:hover,
+footer .backtoTopBox div.footerConnect:hover {
+    width: 192px;
+    line-height: 60px;
+    text-align: center;
+    background-color: #ff3333;
+    padding-left: 40px;
+    color: #fff;
+    background-position: 15px center;
+    -webkit-transition: all .3s ease-out;
+    -o-transition: all .3s ease-out;
+    transition: all .3s ease-out;
+}
+
+footer .backtoTopBox div.footerHelp:hover b,
+footer .backtoTopBox div.footerConnect:hover b {
+    opacity: 1;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    -moz-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out;
+}
+
+footer .backtoTopBox div.footerConnect:hover {
+    width: 145px;
+}
+
+footer .backtoTopBox .footerHelp {
+    background-image: url(../images/phonebg.gif);
+    top: 70px;
+}
+
+footer .backtoTopBox .footerHelp b {
+    padding: 0;
+    padding-top: 14px;
+    position: relative;
+    top: 1px;
+}
+
+footer .backtoTopBox .footerHelp:hover {
+    background-image: url(../images/phonebgh.png);
+}
+
+footer .backtoTopBox .footerBack {
+    background-image: url(../images/top.png);
+    top: 140px;
+}
+
+footer .backtoTopBox .footerBack:hover {
+    background-image: url(../images/topbgh.png);
+    background-color: #ff3333;
+}
+
+footer .backtoTopBox .footerConnect:hover {
+    background-image: url(../images/zaixianzixunh.png);
+}
+
+footer .backtoTopBox .footerBack {
+    display: none;
+}

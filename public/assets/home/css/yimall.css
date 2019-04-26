@@ -1,0 +1,108 @@
+﻿/*核心功能列表 导航*/
+.nav-fixed { position: fixed; top: 50px; left: 0; z-index: 9999; display: block !important;}
+.classify-nav { display: none; width: 100%; min-width: 1100px; background: #f5f5f5;box-shadow: 0 1px 0 0 rgba(218, 218, 218, 0.5);}
+.classify-nav li { float: left; width: 80px; height: 30px; line-height: 33px; text-align: center;}
+.classify-nav li span { display: inline-block; font-size: 12px; line-height: 22px; color: #333; cursor: pointer;}
+.classify-nav li.active span, .classify-nav li span:hover { font-weight: 700; color: #f53822;}
+
+/*大数据-传统的弊端*/
+.abuse-list { padding: 50px 80px 45px;}
+.abuse-list li { width: 190px; padding: 0 80px;}
+.abuse-list .iconfont i { display: block; width: 70px; height: 70px; background: url(../images/data-icon.png) no-repeat;}
+.abuse-list .icon1 i { background-position: 0 0;}
+.abuse-list .icon2 i { background-position: -70px 0;}
+.abuse-list .icon3 i { background-position: -140px 0;}
+
+/*大数据-解决方案*/
+.solution-list li { width: 180px; padding: 0 30px;}
+.solution-list li p { padding-top: 20px;}
+
+/*框架*/
+.frame { position: relative; height: 460px; margin-top: 20px; background: url(../images/frame-bg.png) no-repeat center 34px;}
+.frame .iconfont { width: 70px; height: 70px; margin: 0 auto; font-size: 34px; line-height: 70px; color: #fff; text-align: center; border-radius: 4px; -webkit-border-radius: 4px; -moz-border-radius: 4px;}
+.frame .icon-balanced { margin-bottom: 63px;}
+.frame .icon-server { margin-bottom: 116px;}
+.frame .icon-keep { position: absolute; top: 183px; left: 394px;}
+.frame .icon-oss { position: absolute; top: 183px; right: 394px;}
+.frame .frame-text { position: absolute; width: 180px;}
+.frame .frame-text h3 { padding-bottom: 0;}
+.frame .frame-text p { font-size: 13px; color: #92939c;}
+.frame .frame-text.text-l, .frame .frame-text.text-l h3 { text-align: left;}
+.frame .frame-text.text-r, .frame .frame-text.text-r h3 { text-align: right;}
+.frame .frame-text1 { top: 25px; right: 100px;}
+.frame .frame-text2 { top: 85px; left: 100px;}
+.frame .frame-text3 { top: 204px; left: 100px;}
+.frame .frame-text4 { top: 204px; right: 100px;}
+.frame .frame-text5 { top: 343px; right: 100px;}
+
+/*大数据PK普通版*/
+.pktable { padding: 20px 0 100px;}
+.pktable table { width: 710px; margin: 0 auto; text-align: center; border-collapse: collapse; box-shadow: 0 0 14px rgba(0,0,0,.1);}
+.pktable table th, .pktable table td { border: 1px solid #e8e8e8;}
+.pktable table th { height: 56px; font-size: 16px; font-weight: 700; color: #fff; background: #f7533b;}
+.pktable table td { height: 52px; font-size: 15px; color: #3e3e3e;}
+.pktable table .text-l { text-align: left; text-indent: 50px;}
+
+/*后台管理-平台方*/
+.platform-mod1 { padding-right: 140px; padding-left: 140px;}
+.platform-mod2 { padding: 0 150px;}
+.platform-mod1 h3, .platform-mod2 h3 { font-size: 20px; color: #383838;}
+
+/*丰富的采集商品功能*/
+.collect-title { width: 656px; margin: 0 auto;}
+.collect-title h3 { float: left; width: 140px; height: 40px; margin: 0 12px;}
+.collect-title .active span, .collect-title h3 span:hover { color: #fff; background: #18ba9b;}
+.collect-title h3 span { float: left; width: 140px; height: 40px; font-size: 18px; line-height: 40px; color: #18ba9b; text-align: center; cursor: pointer; border: 1px solid #18ba9b; border-radius: 5px;}
+.collect-content-box { clear: both;}
+.computer-bg { position: relative; top:10px; width: 633px; height: 364px; margin: 0 auto; background: url(../images/computer-bg.png) no-repeat center top;}
+.computer-bg .demo { position: absolute; top: 21px; left: 76px; width: 482px; height: 308px; overflow-x: hidden;}
+.computer-bg .demo img { display: none; width: 481px;}
+
+/*更多平台方后台特色功能*/
+.platform-mod3 { padding: 40px 60px 100px;}
+.platform-mod3 .fl { width: 160px;}
+.platform-mod3 li h3 { font-size: 16px; line-height: 16px;}
+.platform-mod3 li p { font-size: 12px; line-height: 16px;}
+
+/*高级商品发布流程，快捷便利*/
+.release-process .hd { width: 680px; margin: 0 auto; font-size: 0;}
+.release-process .hd li { display: inline-block; width: 170px; height: 42px; cursor: pointer; background: url(../images/backstage2_icon.png) no-repeat;}
+.release-process .hd li.item1, .platform-mod3 .hd li.item1.on { background-position: 0 0;}
+.release-process .hd li.item2 { background-position: -169px -48px;}
+.release-process .hd li.item2.on { background-position: -169px 0;}
+.release-process .hd li.item3 { background-position: -340px -48px;}
+.release-process .hd li.item3.on { background-position: -340px 0;}
+.release-process .hd li.item4 { background-position: -509px -48px;}
+.release-process .hd li.item4.on { background-position: -509px 0;}
+.release-process-con { width: 519px; height: 431px; padding-bottom: 20px; margin: 40px auto 0; background: url(../images/platform2.png) no-repeat;}
+.release-process-con .tempWrap { width: 477px !important;}
+.release-process-con .bd { padding: 20px 0 0 20px;}
+.release-process-con .bd li { width: 480px;}
+.release-process-con .bd li img { width: 481px; height: 285px;}
+
+/*丰富的促销活动*/
+.sales-promotion { padding: 0 70px;}
+.sales-promotion .icon { width: 60px; height: 60px; margin: 0 auto; background: url(../images/promotion-icon.png) no-repeat;}
+.sales-promotion .icon1 { background-position: 0 0;}
+.sales-promotion .icon2 { background-position: -60px 0;}
+.sales-promotion .icon3 { background-position: -120px 0;}
+.sales-promotion .icon4 { background-position: -180px 0;}
+.sales-promotion .icon5 { background-position: -240px 0;}
+.sales-promotion .icon6 { background-position: -300px 0;}
+.sales-promotion .icon7 { background-position: 0 -60px;}
+.sales-promotion .icon8 { background-position: -60px -60px;}
+.sales-promotion .icon9 { background-position: -120px -60px;}
+.sales-promotion .icon10 { background-position: -180px -60px;}
+.sales-promotion .icon11 { background-position: -240px -60px;}
+.sales-promotion .icon12 { background-position: -300px -60px;}
+.sales-promotion h3 { padding: 10px 0 50px;}
+
+/*独有的站点管理后台*/
+.site-function { padding: 0 130px 30px;}
+.site-function h3 { font-size: 18px;}
+
+/*全新视觉与操作的后台欢迎页*/
+.view-wrapper { color: #fff; background: url(../images/site-view-bg.jpg) repeat;}
+.view-wrapper .title { padding-top: 35px;}
+.view-wrapper .desc { padding-bottom: 15px; color: #fff;}
+.view-wrapper .img-center { padding-bottom: 0;}
