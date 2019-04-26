@@ -160,7 +160,7 @@
                                 <span>全国分销商</span>
                             </li>
                         </ul>
-                        <p>{{$about->content}}</p>
+                        <div class="about-content"><?php echo $about->content ?></div>
                         <a class="click-box" href="/a/guanyuwomen/">
                             <span>READ MORE</span>
                         </a>
@@ -220,7 +220,7 @@
                                                         <img class="picture-lazy" data-src='{{$val->image_path}}' alt="{{$val->name}}">
                                                     </font>
                                                     <span>
-                                            <b>{{$val->image_path}}</b>
+                                            <b>{{$val->name}}</b>
                                         </span>
                                                 </a>
                                                 <p class="met-img-showbtn" data-imglist="{{$val->name}}">+</p>
@@ -270,12 +270,12 @@
                                     @endif
 				                    <span>
                                         <a href="{!! url('/home/reveal/detail', array($value->id)) !!}" title="{{$value->name}}">
-                                            <img class="case-lazy" data-src='{{$value->cover_path}}' alt="{{$value->name}}">
+                                            <img class="case-lazy" src='{{$value->cover_path}}' alt="{{$value->name}}">
                                             <font>{{$value->name}}</font>
                                         </a>
                                         <p class="fa fa-search met-img-showbtn" data-imglist="{{$value->name}}"></p>
                                     </span>
-                                    @if($key%2 == 0)
+                                    @if($key%2 == 1)
                                         </li>
                                     @endif
                                 @endforeach
@@ -293,28 +293,53 @@
                         @foreach($news_category as $key => $value)
                             @foreach($value->news as $k => $val)
                                 @if($k == 0)
-                                    <div data-id="108" class="info-first info-ease active">
-                                        <div class="info-img">
-                                            <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">
-                                                <img class="swiper-lazy" data-src='{{$val->image_path}}' height="440px">
-                                            </a>
+                                    @if($key == 0)
+                                        <div data-id="{{$value->id}}" class="info-first info-ease active">
+                                            <div class="info-img">
+                                                <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">
+                                                    <img class="swiper-lazy" data-src='{{$val->image_path}}' height="440px">
+                                                </a>
+                                            </div>
+                                            <div class="info-text">
+                                                <h3>
+                                                    <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
+                                                </h3>
+                                                <ul>
+                                                    <li><i class="fa fa-clock-o"></i><b>{{$val->gmt_create}}</b></li>
+                                                    <li><i class="fa fa-user-plus"></i><b>{{$val->author}}</b></li>
+                                                    <li><i class="fa fa-eye"></i><b>{{$val->read}}</b></li>
+                                                </ul>
+                                                <div class="news-content"><?php echo $val->content ?></div>
+                                                <em> <b></b> </em>
+                                                <a class="click-box" href="{!! url('/home/news/detail', array($val->id)) !!}">
+                                                    <span>READ MORE</span>
+                                                </a>
+                                            </div>
                                         </div>
-                                        <div class="info-text">
-                                            <h3>
-                                                <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
-                                            </h3>
-                                            <ul>
-                                                <li><i class="fa fa-clock-o"></i><b>{{$val->gmt_create}}</b></li>
-                                                <li><i class="fa fa-user-plus"></i><b>{{$val->author}}</b></li>
-                                                <li><i class="fa fa-eye"></i><b>{{$val->read}}</b></li>
-                                            </ul>
-                                            <p>{{$val->content}}</p>
-                                            <em> <b></b> </em>
-                                            <a class="click-box" href="{!! url('/home/news/detail', array($val->id)) !!}">
-                                                <span>READ MORE</span>
-                                            </a>
+                                    @else
+                                        <div data-id="{{$value->id}}" class="info-first info-ease">
+                                            <div class="info-img">
+                                                <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">
+                                                    <img class="swiper-lazy" data-src='{{$val->image_path}}' height="440px">
+                                                </a>
+                                            </div>
+                                            <div class="info-text">
+                                                <h3>
+                                                    <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
+                                                </h3>
+                                                <ul>
+                                                    <li><i class="fa fa-clock-o"></i><b>{{$val->gmt_create}}</b></li>
+                                                    <li><i class="fa fa-user-plus"></i><b>{{$val->author}}</b></li>
+                                                    <li><i class="fa fa-eye"></i><b>{{$val->read}}</b></li>
+                                                </ul>
+                                                <div class="news-content"><?php echo $val->content ?></div>
+                                                <em> <b></b> </em>
+                                                <a class="click-box" href="{!! url('/home/news/detail', array($val->id)) !!}">
+                                                    <span>READ MORE</span>
+                                                </a>
+                                            </div>
                                         </div>
-                                    </div>
+                                    @endif
                                 @endif
                             @endforeach
                         @endforeach
@@ -324,32 +349,59 @@
                         <div class="info-nav">
                             <p>
                                 @foreach($news_category as $key => $value)
-                                    <b data-href="" data-id="{{$value->id}}" title="{{$value->name}}">
-                                        <span>√</span>
-                                        <span>{{$value->name}}</span>
-                                    </b>
+                                    @if($key == 0)
+                                        <b data-href="" data-id="{{$value->id}}" title="{{$value->name}}" class="active">
+                                            <span>√</span>
+                                            <span>{{$value->name}}</span>
+                                        </b>
+                                    @else
+                                        <b data-href="" data-id="{{$value->id}}" title="{{$value->name}}">
+                                            <span>√</span>
+                                            <span>{{$value->name}}</span>
+                                        </b>
+                                    @endif
                                 @endforeach
                             </p>
                         </div>
                         <div class="info-cut">
                             @foreach($news_category as $key => $value)
-                                <div data-id="{{$value->id}}" class="info-list info-ease active">
-                                    <ul class="info-ul">
-                                        @foreach($value->news as $k => $val)
-                                        @if($key%2 == 0)
-                                            <li class="info-li swiper-slide-active">
-                                        @endif
-                                            <p>
-                                                <img class="info-lazy" data-src='{{$val->image_path}}' alt="{{$val->title}}">
-                                                <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
-                                                <b>{{$val->gmt_create}}</b>
-                                            </p>
-                                        @if($key%2 == 0)
-                                            </li>
-                                        @endif
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                @if($key == 0)
+                                    <div data-id="{{$value->id}}" class="info-list info-ease active">
+                                        <ul class="info-ul">
+                                            @foreach($value->news as $k => $val)
+                                                @if($k%2 == 0)
+                                                    <li class="info-li swiper-slide-active">
+                                                        @endif
+                                                        <p>
+                                                            <img class="info-lazy" src='{{$val->image_path}}' alt="{{$val->title}}">
+                                                            <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
+                                                            <b>{{$val->gmt_create}}</b>
+                                                        </p>
+                                                        @if($k%2 == 1)
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @else
+                                    <div data-id="{{$value->id}}" class="info-list info-ease">
+                                        <ul class="info-ul">
+                                            @foreach($value->news as $k => $val)
+                                                @if($k%2 == 0)
+                                                    <li class="info-li swiper-slide-active">
+                                                        @endif
+                                                        <p>
+                                                            <img class="info-lazy" src='{{$val->image_path}}' alt="{{$val->title}}">
+                                                            <a href="{!! url('/home/news/detail', array($val->id)) !!}" title="{{$val->title}}">{{$val->title}}</a>
+                                                            <b>{{$val->gmt_create}}</b>
+                                                        </p>
+                                                        @if($k%2 == 1)
+                                                    </li>
+                                                @endif
+                                            @endforeach
+                                        </ul>
+                                    </div>
+                                @endif
                             @endforeach
                         </div>
                     </div>
@@ -360,7 +412,7 @@
         <div class="window-bin swiper-lazy" data-hash="contact" data-title="联系我们" data-background="{{$contact_banner->image_path}}">
             <div class="container contact-box">
                 <div class="row">
-                    <div class="contact-left" id="map" coordinate="116.292643,40.099182"></div>
+                    <div class="contact-left" id="map" coordinate="{{$contact->location}}"></div>
                     <div class="contact-right">
                         <div class="contact-cut">
                             <div class="contact-bin">
@@ -423,6 +475,8 @@
     .product-label { margin: 0; padding: 0;}
     .product-label li a { display: block; width: 100px; height: 26px; font-size: 12px; color: #666; line-height: 24px; text-align: center; border: solid 1px #b0e4f5;}
     .product-label li a:hover { background: #b0e4f5; color: #fff; }
+    .about-content{ height: 100px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-bottom: 20px;}
+    .news-content{ height: 100px; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; margin-bottom: 20px;}
 </style>
 <script>
     window.onload = function () {             //在整个文档下面加一个JS属性

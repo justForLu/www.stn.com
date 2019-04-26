@@ -35,7 +35,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
+                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">640*460 </span>px</span></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="status" class="col-sm-3 control-label">产品简介</label>

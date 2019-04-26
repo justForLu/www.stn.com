@@ -165,16 +165,7 @@
     </div>
     <div class="sign-box">
         <ul class="sign-ul swiper-nav">
-            <li class="sign-li swiper-slide-next">
-                <a href="/a/xinwenzixun/gongsixinwen/" title="公司新闻">
-                    <b>公司新闻</b>
-                </a>
-            </li>
-            <li class="sign-li swiper-slide-next">
-                <a href="/a/xinwenzixun/xingyezixun/" title="行业资讯">
-                    <b>行业资讯</b>
-                </a>
-            </li>
+
         </ul>
     </div>
 </div>

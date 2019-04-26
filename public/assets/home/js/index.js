@@ -1261,7 +1261,7 @@ map_func = function(){var coo = coordinate&&coordinate.split(',');
 var map = new BMap.Map("map");
 map.centerAndZoom(new BMap.Point(coo[0]*1,coo[1]*1), 19);
 map.enableScrollWheelZoom(); 
-var Icon = new BMap.Icon(['/skin']+"/images/point.svg\" class=\"point_svg",new BMap.Size(28,56));
+var Icon = new BMap.Icon(['/assets']+"/home/images/point.svg\" class=\"point_svg",new BMap.Size(28,56));
 var marker = new BMap.Marker(new BMap.Point(coo[0]*1,coo[1]*1),{icon:Icon});
 marker.setAnimation(BMAP_ANIMATION_BOUNCE); 
 map.addOverlay(marker);}}$('.window-bin').each(function(index,element){data_hash=$(this).attr('data-hash');

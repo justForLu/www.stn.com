@@ -27,7 +27,7 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">389*409 </span>px</span></div>
+                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">390*410 </span>px</span></div>
                                 </div>
                                 <div class="form-group">
                                     <label for="name" class="col-sm-3 control-label">关于我们内容</label>

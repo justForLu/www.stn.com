@@ -43,7 +43,7 @@
                                 <div class="form-group">
                                     <label for="image" class="col-sm-3 control-label"><span class="must">*</span>背景图图片</label>
                                     <div class="col-sm-8">
-                                        <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-num="1">
+                                        <div class="J_upload_image" data-id="image" data-width="2000" data-_token="{{ csrf_token() }}" data-num="1">
                                             @if(!empty($banner->image))
                                                 <input type="hidden" name="image_val" value="{{ $banner->image }}">
                                                 <input type="hidden" name="image_path[]" value="{{ $banner->image_path[0] }}">
@@ -51,7 +51,27 @@
                                         </div>
                                     </div>
                                     <div class="col-sm-3"></div>
-                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
+                                    <div class="col-sm-8"><span class="tips">首页轮播建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">首页关于我们建议尺寸<span style="color: #ff0000">1920*900 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">首页产品中心建议尺寸<span style="color: #ff0000">1920*900 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">首页案例展示建议尺寸<span style="color: #ff0000">1920*1080 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">首页新闻资讯建议尺寸<span style="color: #ff0000">1920*800 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">首页联系我们建议尺寸<span style="color: #ff0000">1920*1358 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">关于我们建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">产品中心建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">案例展示建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">新闻资讯建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">联系我们建议尺寸<span style="color: #ff0000">1920*1000 </span>px</span></div>
                                 </div>
                             </div>
                         </div>

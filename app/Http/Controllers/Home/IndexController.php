@@ -50,6 +50,7 @@ class IndexController extends BaseController
         //关于我们的简介
         $about = About::first();
         $about->images = FileController::getFilePath($about->image);
+        $about->content = htmlspecialchars_decode($about->content);
 
         /*  产品中心部分的banner图和产品展示   */
         $product_banner = Banner::where('position','=',BannerPositionEnum::PRODUCT1)
@@ -122,6 +123,7 @@ class IndexController extends BaseController
             foreach ($news_list as $k => $val){
                 $news_image = array_values(FileController::getFilePath($val->image));
                 $news_list[$k]['image_path'] = isset($news_image[0]) ? $news_image[0] : '';
+                $news_list[$k]['content'] = htmlspecialchars_decode($val->content);
             }
             $news_category[$key]['news'] = $news_list;
         }
