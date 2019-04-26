@@ -12,7 +12,8 @@ class Reveal extends Base
     // 模型对应表名
     protected $table = 'reveal';
 
-    protected $fillable = ['name', 'synopsis', 'image', 'sort', 'status', 'is_recommend', 'author', 'read', 'content', 'gmt_create', 'gmt_update', 'gmt_delete'];
+    protected $fillable = ['name', 'cover', 'synopsis', 'image', 'sort', 'status', 'is_recommend', 'author', 'read', 'content',
+        'gmt_create', 'gmt_update', 'gmt_delete'];
 
     public $timestamps = true;
 

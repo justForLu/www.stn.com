@@ -1,4 +1,4 @@
-@extends('admin.layout.base')
+@extends('home.layout.base')
 
 @section('content')
     <section class="container mt20">

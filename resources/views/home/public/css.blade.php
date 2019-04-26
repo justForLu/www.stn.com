@@ -1,1 +1,1 @@
-<style type="text/css" href="{{asset('/home/css/index.css')}}"></style>
+<style type="text/css" href="{{asset('/assets/home/css/index.css')}}"></style>

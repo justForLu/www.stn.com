@@ -95,6 +95,7 @@ class RevealController extends BaseController
     {
         $reveal = $this->reveal->find($id);
         $reveal->images = FileController::getFilePath($reveal->image);
+        $reveal->cover_path = array_values(FileController::getFilePath($reveal->cover));
 
         return view('admin.reveal.edit',compact('reveal'));
     }

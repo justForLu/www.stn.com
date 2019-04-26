@@ -46,6 +46,12 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="name" class="col-sm-3 control-label">公司邮箱</label>
+                                    <div class="col-sm-8">
+                                        <input type="text" name="email" class="form-control" value="{{$config->email}}" placeholder="请输入公司邮箱">
+                                    </div>
+                                </div>
+                                <div class="form-group">
                                     <label for="name" class="col-sm-3 control-label">公司微信公众号名称</label>
                                     <div class="col-sm-8">
                                         <input type="text" name="wechat" class="form-control" value="{{$config->wechat}}" placeholder="请输入公司微信公众号名称">

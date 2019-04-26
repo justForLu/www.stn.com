@@ -1,14 +1,14 @@
 <footer>
     <div class="foot-left">
         <div class="foot-nav">
-            <a href="/a/guanyuwomen/" title="关于我们">关于我们</a>
-            <a href="/a/fuwuxiangmu/" title="服务项目">服务项目</a>
-            <a href="/a/chanpinzhongxin/" title="产品中心">产品中心</a>
-            <a href="/a/xinwenzixun/" title="新闻资讯">新闻资讯</a>
-            <a href="/a/anlizhanshi/" title="案例展示">案例展示</a>
-            <a href="/a/lianxiwomen/" title="联系我们">联系我们</a>
+            <a href="{!! url('/home/about/index') !!}" title="关于我们">关于我们</a>
+            <a href="{!! url('home/product/index') !!}" title="服务项目">服务项目</a>
+            <a href="{!! url('/home/product/index') !!}" title="产品中心">产品中心</a>
+            <a href="{!! url('/home/news/index') !!}" title="新闻资讯">新闻资讯</a>
+            <a href="{!! url('/home/reveal/index') !!}" title="案例展示">案例展示</a>
+            <a href="{!! url('/home/contact/index') !!}" title="联系我们">联系我们</a>
         </div>
-        <div class="powered_by_metinfo">Copyright &copy; 2018-2018 三头牛（北京）科技有限公司 版权所有 京ICP备18041273号</div>
+        <div class="powered_by_metinfo">{{$config->copyright}}</div>
     </div>
     <div class="foot-right">
         <div class="foot-text">

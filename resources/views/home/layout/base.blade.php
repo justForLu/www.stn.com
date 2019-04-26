@@ -15,10 +15,10 @@
     <title>拾叁网络官网</title>
     <meta name="keywords" content=""/>
     <meta name="description" content="网站打开慢的其中一个原因是图片文件过大，一个网站在打开时需要同时加载很多图片，如果网站中每张图片都很大就容易发生卡顿状态！"/>
-    @include('admin.public.css')
+    @include('home.public.css')
 </head>
 <body>
-@include('admin.public.header')
+@include('home.public.header')
 
 <div class="side-content">
     <div class="banner-sub auto not-has" data-height="420|350|200"></div>
@@ -26,8 +26,8 @@
     <div class="side-scroll swiper-scrollbar"></div>
 </div>
 
-@include('admin.public.share')
-@include('admin.public.js')
+@include('home.public.share')
+@include('home.public.js')
 @yield('scripts')
 </body>
 </html>

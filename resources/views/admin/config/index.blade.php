@@ -35,6 +35,12 @@
                                 </div>
                             </div>
                             <div class="form-group">
+                                <label class="col-sm-3 control-label">公司邮箱</label>
+                                <div class="col-sm-8 form-control-static">
+                                    {{$config->email}}
+                                </div>
+                            </div>
+                            <div class="form-group">
                                 <label class="col-sm-3 control-label">公司微信公众号名称</label>
                                 <div class="col-sm-8 form-control-static">
                                     {{$config->wechat}}

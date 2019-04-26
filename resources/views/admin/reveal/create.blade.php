@@ -26,6 +26,15 @@
                                     {{--</div>--}}
                                 {{--</div>--}}
                                 <div class="form-group">
+                                    <label for="cover" class="col-sm-3 control-label"><span class="must">*</span>案例展示封面图片</label>
+                                    <div class="col-sm-8">
+                                        <div class="J_upload_image" data-id="cover" data-width="690" data-_token="{{ csrf_token() }}" data-num="1">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
+                                </div>
+                                <div class="form-group">
                                     <label for="image" class="col-sm-3 control-label"><span class="must">*</span>案例展示图片</label>
                                     <div class="col-sm-8">
                                         <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}"  data-type="multiple" data-num="5">

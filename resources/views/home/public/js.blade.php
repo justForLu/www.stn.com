@@ -1,1 +1,1 @@
-<script type="text/javascript" src="{{asset('/home/js/index.js')}}"></script>
+<script type="text/javascript" src="{{asset('/assets/home/js/index.js')}}"></script>

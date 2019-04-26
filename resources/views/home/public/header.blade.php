@@ -32,7 +32,7 @@
         <div class="side-shadow"></div>
         <div class="side-bin">
             <div class="side-search">
-                <form name="formsearch" action="/plus/search.php">
+                <form name="formsearch" action="{!! url('/home/search/index') !!}">
                     <input type="hidden" name="kwtype" value="0"/>
                     <div class="form-group">
                         <div class="input-search">
@@ -53,19 +53,19 @@
                         </a>
                     </li>
                     <li class="nav-first ">
-                        <a href="/a/guanyuwomen/" title="关于我们" data-alert="全部">
+                        <a href="{!! url('/home/about/index') !!}" title="关于我们" data-alert="全部">
                             <i class="fa fa-home fa-pie-chart"></i>
                             <b>关于我们</b>
                         </a>
                     </li>
                     <li class="nav-first ">
-                        <a href="/a/fuwuxiangmu/" title="服务项目" data-alert="全部">
+                        <a href="{!! url('/home/product/index') !!}" title="服务项目" data-alert="全部">
                             <i class="fa fa-home fa-coffee"></i>
                             <b>服务项目</b>
                         </a>
                     </li>
                     <li class="nav-first has ">
-                        <a href="/a/chanpinzhongxin/" title="产品中心" data-alert="全部">
+                        <a href="{!! url('/home/product/index') !!}" title="产品中心" data-alert="全部">
                             <i class="fa fa-home fa-camera"></i>
                             <b>产品中心</b>
                             <p>16</p>
@@ -95,7 +95,7 @@
                         </ul>
                     </li>
                     <li class="nav-first has active">
-                        <a href="/a/xinwenzixun/" title="新闻资讯" data-alert="全部">
+                        <a href="{!! url('/home/news/index') !!}" title="新闻资讯" data-alert="全部">
                             <i class="fa fa-home fa-bell"></i>
                             <b>新闻资讯</b>
                             <p>8</p>
@@ -120,14 +120,14 @@
                         </ul>
                     </li>
                     <li class="nav-first ">
-                        <a href="/a/anlizhanshi/" title="案例展示" data-alert="全部">
+                        <a href="{!! url('/home/reveal/index') !!}" title="案例展示" data-alert="全部">
                             <i class="fa fa-home fa-flag"></i>
                             <b>案例展示</b>
                             <p>12</p>
                         </a>
                     </li>
                     <li class="nav-first ">
-                        <a href="/a/lianxiwomen/" title="联系我们" data-alert="全部">
+                        <a href="{!! url('/home/contact/index') !!}" title="联系我们" data-alert="全部">
                             <i class="fa fa-home fa-book"></i>
                             <b>联系我们</b>
                         </a>
@@ -136,7 +136,7 @@
             </div>
             <div class="side-foot">
                 <div class="side-phone">
-                    <p><b>Call me :</b><a href="tel:010-57121206">010-57121206</a></p>
+                    <p><b>Call me :</b><a href="tel:010-57121206">{{$config->phone}}</a></p>
                     <i class="fa fa-qrcode" data-toggle="modal" data-target="#met-ewm-modal"></i>
                 </div>
                 <div class="social-box">
@@ -152,7 +152,7 @@
                         <i class="fa fa-weibo"></i>
                     </a>
                 </div>
-                <div class="side-text">Copyright &copy; 2018-2018 三头牛（北京）科技有限公司 版权所有 京ICP备18041273号</div>
+                <div class="side-text">{{$config->copyright}}</div>
             </div>
         </div>
     </div>
@@ -160,7 +160,7 @@
 <div class="side-head nav-open1">
     <div class="side-logo">
         <a href="/" title="拾叁网络官网">
-            <img data-original="skin/images/logo.png" data-size="175_40" alt="拾叁网络官网" title="拾叁网络官网">
+            <img data-original="{{asset('home/images/logo.png')}}" data-size="175_40" alt="拾叁网络官网" title="拾叁网络官网">
         </a>
     </div>
     <div class="sign-box">
