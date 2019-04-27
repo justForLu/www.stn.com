@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Models\Admin;
+namespace App\Models\Home;
 
 use App\Enums\ModuleEnum;
 use App\Models\Base;

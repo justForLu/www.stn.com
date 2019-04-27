@@ -1,11 +1,13 @@
 <?php
 namespace App\Http\Controllers\Home;
 
+use App\Enums\BannerPositionEnum;
 use App\Enums\BasicEnum;
-use App\Models\Admin\CheckCategory;
-use App\Models\Admin\CheckContent;
-use Illuminate\Http\Request;
-use App\Http\Requests;
+use App\Http\Controllers\Admin\FileController;
+use App\Models\Home\Banner;
+use App\Models\Home\Contact;
+use App\Http\Requests\Home\ContactRequest;
+use App\Models\Home\Feedback;
 
 class ContactController extends BaseController
 {
@@ -17,57 +19,38 @@ class ContactController extends BaseController
     }
 
     /**
-     * 自检手册分类
-     * @param Request $request
+     * 联系我们
+     *
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index()
     {
-        $params = $request->all();
-
-        $list = CheckCategory::where('status','=',BasicEnum::ACTIVE)
-            ->where('parent','=',0)
-            ->where($params)
+        $contact = Contact::first();
+        $contact->content = htmlspecialchars_decode($contact->content);
+        //联系我们的banner
+        $banner = Banner::where('status','=',BasicEnum::ACTIVE)
+            ->where('position','=',BannerPositionEnum::CONTACT)
             ->orderBy('sort','ASC')
-            ->orderBy('id', 'DESC')
-            ->get();
-
-        //常见问题
-        $problem = CheckContent::where('status','=',BasicEnum::ACTIVE)
-            ->orderBy('read','desc')
-            ->limit(10)
-            ->get();
-
-        return view('home.check_category.index',compact('list','problem'));
-    }
-
-    /**
-     * 自检手册分类详情
-     * @param $id
-     * @param Request $request
-     * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
-     */
-    public function details($id,Request $request){
-
-        $check_category = CheckCategory::where('id',$id)->first();
-
-        //子级分类
-        $children_category = CheckCategory::where('status','=',BasicEnum::ACTIVE)
-            ->where('parent','=',$id)
-            ->orderBy('sort','ASC')
-            ->orderBy('id', 'DESC')
-            ->get();
-        //分类下的问题。
-        foreach($children_category as $key => $value){
-            $problem = CheckContent::where('status','=',BasicEnum::ACTIVE)
-                ->where('type_second_id','=',$value['id'])
-                ->get();
-            $children_category[$key]['problem'] = $problem;
+            ->first();
+        if($banner){
+            $banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($banner['image']));
+            $banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $banner = array();
+            $banner['image_path'] = '';
         }
 
-        return view('home.check_category.details',compact('check_category','children_category'));
+        return view('home.contact.index',compact('contact','banner'));
     }
 
+    public function feedback(ContactRequest $request){
+        $data = $request->only('name','mobile','email','content');
+
+        $result = Feedback::create($data);
+
+        return $this->ajaxAuto($result, '提交', route('home.contact.index'));
+    }
 }
 
 

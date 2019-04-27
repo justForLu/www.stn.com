@@ -1,1 +1,3 @@
-<style type="text/css" href="{{asset('/assets/home/css/index.css')}}"></style>
+<link rel="stylesheet" href="{{asset('/assets/home/css/index.css')}}">
+
+

@@ -140,7 +140,7 @@
                     <i class="fa fa-qrcode" data-toggle="modal" data-target="#met-ewm-modal"></i>
                 </div>
                 <div class="social-box">
-                    <audio id="audio" src="skin/images/bg.mp3" status="0"></audio>
+                    <audio id="audio" src="" status="0"></audio>
                     <canvas id="canvas" width="105" height="34"></canvas>
                     <a rel="nofollow" data-toggle="modal" data-target="#met-share-modal">
                         <i class="fa fa-share-alt"></i>
@@ -165,7 +165,17 @@
     </div>
     <div class="sign-box">
         <ul class="sign-ul swiper-nav">
-
+            @if(isset($menu))
+                @foreach($menu as $value)
+                    @if($value['is_active'] == 'yes')
+                        <li class="sign-li active swiper-slide-active">
+                    @else
+                        <li class="sign-li swiper-slide-active">
+                    @endif
+                        <a href="{{$value['menu_url']}}" title="{{$value['title']}}"><b>{{$value['title']}}</b></a>
+                    </li>
+                @endforeach
+            @endif
         </ul>
     </div>
 </div>

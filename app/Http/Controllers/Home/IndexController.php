@@ -28,15 +28,21 @@ class IndexController extends BaseController
     public function index()
     {
         /*  网站首页部分的banner图  */
-        $index_banner = Banner::where('position','=',BannerPositionEnum::INDEX)
-            ->where('status','=',BasicEnum::ACTIVE)
+        $index_banner = Banner::where('status','=',BasicEnum::ACTIVE)
+            ->where('position','=',BannerPositionEnum::INDEX)
             ->limit(3)
             ->orderBy('sort','ASC')
             ->get();
         //处理图片
-        foreach ($index_banner as $key => $value){
-            $banner_image = array_values(FileController::getFilePath($value->image));
-            $index_banner[$key]['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($index_banner){
+            $index_banner->toArray();
+            foreach ($index_banner as $key => $value){
+                $banner_image = array_values(FileController::getFilePath($value->image));
+                $index_banner[$key]['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+            }
+        }else{
+            $index_banner = array();
+            $index_banner[0]['image_path'] = '';
         }
 
         /*  关于我们部分的banner图和简介   */
@@ -44,22 +50,33 @@ class IndexController extends BaseController
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->first();
-        //处理图片
-        $banner_image = array_values(FileController::getFilePath($about_banner->image));
-        $about_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($about_banner){
+            $about_banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($about_banner['image']));
+            $about_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $about_banner = array();
+            $about_banner['image_path'] = '';
+        }
         //关于我们的简介
         $about = About::first();
         $about->images = FileController::getFilePath($about->image);
         $about->content = htmlspecialchars_decode($about->content);
+
 
         /*  产品中心部分的banner图和产品展示   */
         $product_banner = Banner::where('position','=',BannerPositionEnum::PRODUCT1)
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->first();
-        //处理图片
-        $banner_image = array_values(FileController::getFilePath($product_banner->image));
-        $product_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($product_banner){
+            $product_banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($product_banner['image']));
+            $product_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $product_banner = array();
+            $product_banner['image_path'] = '';
+        }
         //产品分类以及产品分类下的产品
         $product_category = Category::where('type','=',CategoryTypeEnum::PRODUCT)
             ->where('status','=',BasicEnum::ACTIVE)
@@ -85,9 +102,14 @@ class IndexController extends BaseController
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->first();
-        //处理图片
-        $banner_image = array_values(FileController::getFilePath($reveal_banner->image));
-        $reveal_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($reveal_banner){
+            $reveal_banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($reveal_banner['image']));
+            $reveal_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $reveal_banner = array();
+            $reveal_banner['image_path'] = '';
+        }
 
         $reveal_list = Reveal::where('status','=',BasicEnum::ACTIVE)
             ->limit(6)
@@ -104,9 +126,14 @@ class IndexController extends BaseController
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->first();
-        //处理图片
-        $banner_image = array_values(FileController::getFilePath($news_banner->image));
-        $news_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($news_banner){
+            $news_banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($news_banner['image']));
+            $news_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $news_banner = array();
+            $news_banner['image_path'] = '';
+        }
 
         $news_category = Category::where('type','=',CategoryTypeEnum::NEWS)
             ->where('status','=',BasicEnum::ACTIVE)
@@ -133,9 +160,14 @@ class IndexController extends BaseController
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->first();
-        //处理图片
-        $banner_image = array_values(FileController::getFilePath($contact_banner->image));
-        $contact_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        if($contact_banner){
+            $contact_banner->toArray();
+            $banner_image = array_values(FileController::getFilePath($contact_banner['image']));
+            $contact_banner['image_path'] = isset($banner_image[0]) ? $banner_image[0] : '';
+        }else{
+            $contact_banner = array();
+            $contact_banner['image_path'] = '';
+        }
 
         $contact = Contact::first();
 

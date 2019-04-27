@@ -21,10 +21,9 @@ class NewsCriteria extends Criteria {
     public function apply($model, Repository $repository)
     {
         $model = $model->where('status', '=',BasicEnum::ACTIVE);
-        //发布时间小于现在这个时间点
-        $model = $model->where('gmt_release', '<=',get_date());
 
         $model = $model->orderBy('is_top','DESC');
+
         $model = $model->orderBy('gmt_create','DESC');
 
         return $model;

@@ -185,7 +185,7 @@
             </div>
             <div class="window-next">SCROLL</div>
         </div>
-        <div class="window-bin swiper-lazy" data-hash="picture" data-title="产品中心" data-background="{{$product_banner->image_path}}">
+        <div class="window-bin swiper-lazy" data-hash="picture" data-title="产品中心" data-background="{{$product_banner['image_path']}}">
             <div class="container picture-box">
                 <div class="row">
                     <div class="picture-title">
@@ -253,7 +253,7 @@
             </div>
             <div class="window-next">SCROLL</div>
         </div>
-        <div class="window-bin swiper-lazy" data-hash="case" data-title="案例展示" data-background="{{$reveal_banner->image_path}}">
+        <div class="window-bin swiper-lazy" data-hash="case" data-title="案例展示" data-background="{{$reveal_banner['image_path']}}">
             <div class="container case-box">
                 <div class="row">
                     <div class="case-left">
@@ -286,7 +286,7 @@
             </div>
             <div class="window-next">SCROLL</div>
         </div>
-        <div class="window-bin swiper-lazy" data-hash="info" data-title="新闻资讯" data-background="{{$news_banner->image_path}}">
+        <div class="window-bin swiper-lazy" data-hash="info" data-title="新闻资讯" data-background="{{$news_banner['image_path']}}">
             <div class="container info-box">
                 <div class="row">
                     <div class="info-left">
@@ -409,7 +409,7 @@
             </div>
             <div class="window-next">SCROLL</div>
         </div>
-        <div class="window-bin swiper-lazy" data-hash="contact" data-title="联系我们" data-background="{{$contact_banner->image_path}}">
+        <div class="window-bin swiper-lazy" data-hash="contact" data-title="联系我们" data-background="{{$contact_banner['image_path']}}">
             <div class="container contact-box">
                 <div class="row">
                     <div class="contact-left" id="map" coordinate="{{$contact->location}}"></div>

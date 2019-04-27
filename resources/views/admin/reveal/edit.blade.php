@@ -39,7 +39,7 @@
                                         <div class="J_upload_image" data-id="image" data-width="690" data-_token="{{ csrf_token() }}" data-type="multiple" data-num="5">
                                             @if(!empty($reveal->images))
                                                 @foreach($reveal->images as $key => $value )
-                                                    <input type="hidden" name="image_val" value="{{ $reveal->image }}">
+                                                    <input type="hidden" name="image_val" value="{{ $key }}">
                                                     <input type="hidden" name="image_path[]" value="{{ $value }}">
                                                 @endforeach
                                             @endif

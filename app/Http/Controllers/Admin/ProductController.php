@@ -104,6 +104,7 @@ class ProductController extends BaseController
     {
         $product = $this->product->find($id);
         $product->image_path = array_values(FileController::getFilePath($product->image));
+        $product->pictures = FileController::getFilePath($product->picture);
         //产品类别
         $category = Category::where('type', '=', CategoryTypeEnum::PRODUCT)->where('status', '=', BasicEnum::ACTIVE)->get();
 

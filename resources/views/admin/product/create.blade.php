@@ -44,6 +44,15 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
+                                    <label for="picture" class="col-sm-3 control-label"><span class="must">*</span>产品详情里的图片</label>
+                                    <div class="col-sm-8">
+                                        <div class="J_upload_image" data-id="picture" data-width="690" data-_token="{{ csrf_token() }}"  data-type="multiple" data-num="5">
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-3"></div>
+                                    <div class="col-sm-8"><span class="tips">建议尺寸<span style="color: #ff0000">690*284 </span>px</span></div>
+                                </div>
+                                <div class="form-group">
                                     <label for="status" class="col-sm-3 control-label">排序</label>
                                     <div class="col-sm-8">
                                         <input type="text" name="sort" class="form-control" value="1" placeholder="请输入排序">

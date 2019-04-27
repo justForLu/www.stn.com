@@ -71,16 +71,16 @@
                                         {{\App\Enums\BoolEnum::enumRadio($news->is_recommend,'is_recommend')}}
                                     </div>
                                 </div>
-                                <div class="form-group gmt_release">
-                                    <label for="gmt_release" class="col-sm-3 control-label">排序</label>
+                                <div class="form-group">
+                                    <label for="sort" class="col-sm-3 control-label">排序</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="sort" class="form-control" value="{{$news->sort}}" placeholder="请输入排序">
                                     </div>
                                     <div class="col-sm-3"></div>
                                     <div class="col-sm-8"><span class="tips">排序越小越靠前</span></div>
                                 </div>
-                                <div class="form-group gmt_release">
-                                    <label for="gmt_release" class="col-sm-3 control-label">阅读量</label>
+                                <div class="form-group">
+                                    <label for="read" class="col-sm-3 control-label">阅读量</label>
                                     <div class="col-sm-3">
                                         <input type="text" name="read" class="form-control" value="{{$news->read}}" placeholder="请输入阅读量">
                                     </div>
