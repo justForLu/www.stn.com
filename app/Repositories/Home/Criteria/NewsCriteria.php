@@ -20,6 +20,10 @@ class NewsCriteria extends Criteria {
      */
     public function apply($model, Repository $repository)
     {
+        if(isset($this->conditions['type']) && !empty($this->conditions['type'])){
+            $model = $model->where('type', '=',$this->conditions['type']);
+        }
+
         $model = $model->where('status', '=',BasicEnum::ACTIVE);
 
         $model = $model->orderBy('is_top','DESC');

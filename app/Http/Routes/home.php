@@ -24,10 +24,12 @@ Route::group(['prefix' => 'home', 'namespace' => 'Home'], function () {
     Route::group(['middleware'=>'api'],function (){
         Route::any('/about/index','AboutController@index');
         Route::any('/product/index','ProductController@index');
+        Route::any('/product/index/{type}','ProductController@index');
         Route::any('/product/detail/{id}','ProductController@detail');
         Route::any('/reveal/index','RevealController@index');
         Route::any('/reveal/detail/{id}','RevealController@detail');
         Route::any('/news/index','NewsController@index');
+        Route::any('/news/index/{type}','NewsController@index');
         Route::any('/news/detail/{id}','NewsController@detail');
         Route::any('/contact/index','ContactController@index');
         Route::any('/contact/feedback','ContactController@feedback');

@@ -3,6 +3,7 @@ namespace App\Http\Controllers\Home;
 
 use App\Enums\BannerPositionEnum;
 use App\Enums\BasicEnum;
+use App\Enums\FeedbackStatusEnum;
 use App\Http\Controllers\Admin\FileController;
 use App\Models\Home\Banner;
 use App\Models\Home\Contact;
@@ -44,12 +45,19 @@ class ContactController extends BaseController
         return view('home.contact.index',compact('contact','banner'));
     }
 
+    /**
+     * 联系我们提交反馈或意见
+     *
+     * @param ContactRequest $request
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function feedback(ContactRequest $request){
         $data = $request->only('name','mobile','email','content');
+        $data['status'] = FeedbackStatusEnum::PENDING;
 
         $result = Feedback::create($data);
 
-        return $this->ajaxAuto($result, '提交', route('home.contact.index'));
+        return $this->ajaxAuto($result, '提交', url('/home/contact/index'));
     }
 }
 

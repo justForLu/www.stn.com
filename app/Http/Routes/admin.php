@@ -46,6 +46,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'Admin'], function (){
         Route::resource('/config', 'ConfigController');
         Route::resource('/banner', 'BannerController');
         Route::resource('/category', 'CategoryController');
+        Route::resource('/feedback', 'FeedbackController');
         Route::resource('/contact', 'ContactController');
         Route::resource('/product', 'ProductController');
         Route::resource('/reveal', 'RevealController');

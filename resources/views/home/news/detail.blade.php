@@ -44,8 +44,15 @@
                                 <div class="met-news-bar">
                                     <div class="sidenews-lists">
                                         <h3><span>为您推荐</span></h3>
-                                        <ul>
-
+                                        <ul class="blocks-2 blocks-sm-3 mob-masonry" data-scale="1">
+                                            @foreach($news_list as $key => $value)
+                                                <li>
+                                                    <a href="{!! url('/home/news/detail', array($value->id)) !!}" class="img" title="{{$value->title}}">
+                                                        <img class="swiper-lazy swiper-lazy-loaded" alt="{{$value->title}}" src="{{$value->image_path}}" style="opacity: 1;">
+                                                    </a>
+                                                    <a href="{!! url('/home/news/detail', array($value->id)) !!}" class="txt" title="{{$value->title}}">{{$value->title}}</a>
+                                                </li>
+                                            @endforeach
                                         </ul>
                                     </div>
                                 </div>

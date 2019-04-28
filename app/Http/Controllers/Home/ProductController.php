@@ -46,27 +46,27 @@ class ProductController extends BaseController
 
     /**
      * 自检手册分类
-     * @param Request $request
+     * @param $type
      * @return \Illuminate\Contracts\View\Factory|\Illuminate\View\View
      */
-    public function index(Request $request)
+    public function index($type = 0)
     {
-        $params = $request->all();
         //产品中心分类菜单
         $menu = array();
         $category = Category::where('type','=',CategoryTypeEnum::PRODUCT)
             ->where('status','=',BasicEnum::ACTIVE)
             ->orderBy('sort','ASC')
             ->get();
-        if(isset($params['type']) && !empty($params['type'])){
+        if($type){
             foreach ($category as $key => $value){
-                $menu[$key]['menu_url'] = url('/home/product/index', array('type' => $value['id']));
+                $menu[$key]['menu_url'] = url('/home/product/index', array($value['id']));
                 $menu[$key]['title'] = $value['name'];
-                $menu[$key]['is_active'] = ($value['id'] == $params['type']) ? 'yes' : 'no';
+                $menu[$key]['is_active'] = ($value['id'] == $type) ? 'yes' : 'no';
             }
+            $params['type'] = $type;
         }else{
             foreach ($category as $key => $value){
-                $menu[$key]['menu_url'] = url('/home/product/index', array('type' => $value['id']));
+                $menu[$key]['menu_url'] = url('/home/product/index', array($value['id']));
                 $menu[$key]['title'] = $value['name'];
                 $menu[$key]['is_active'] = ($key == 0) ? 'yes' : 'no';
             }
@@ -101,7 +101,7 @@ class ProductController extends BaseController
             ->orderBy('sort','ASC')
             ->get();
         foreach ($category as $key => $value){
-            $menu[$key]['menu_url'] = url('/home/product/index', array('type' => $value['id']));
+            $menu[$key]['menu_url'] = url('/home/product/index', array($value['id']));
             $menu[$key]['title'] = $value['name'];
             $menu[$key]['is_active'] = ($value['id'] == $product->type) ? 'yes' : 'no';
         }
