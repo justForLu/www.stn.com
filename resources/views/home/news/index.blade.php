@@ -2,7 +2,7 @@
 
 @section('content')
 	<div class="side-html">
-		<div class="side-body swiper-lazy" data-background="skin/images/1500274209.jpg">
+		<div class="side-body swiper-lazy" data-background="{{$banner->image_path}}">
 			<section class="met-news animsition type-0">
 				<div class="container">
 					<div class="row">

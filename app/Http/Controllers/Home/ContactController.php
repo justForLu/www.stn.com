@@ -57,7 +57,12 @@ class ContactController extends BaseController
 
         $result = Feedback::create($data);
 
-        return $this->ajaxAuto($result, '提交', url('/home/contact/index'));
+        if($result){
+            return view('home.public.message');
+        }else{
+            return view('home.public.message');
+        }
+
     }
 }
 

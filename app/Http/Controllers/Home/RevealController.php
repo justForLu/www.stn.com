@@ -22,7 +22,7 @@ class RevealController extends BaseController
         parent::__construct();
         //案例展示的banner
         $banner = Banner::where('status','=',BasicEnum::ACTIVE)
-            ->where('position','=',BannerPositionEnum::REVEAL1)
+            ->where('position','=',BannerPositionEnum::REVEAL)
             ->orderBy('sort','ASC')
             ->first();
         if($banner){
