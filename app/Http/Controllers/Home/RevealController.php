@@ -46,9 +46,11 @@ class RevealController extends BaseController
      */
     public function index(Request $request)
     {
+        $params = $request->all();
+
         $this->reveal->pushCriteria(new RevealCriteria(array()));
 
-        $list = $this->reveal->paginate(Config::get('home.page_size',10));
+        $list = $this->reveal->paginate(1);
         //处理图片
         foreach($list as $key => $value){
             $list[$key]['cover_path'] = array_values(FileController::getFilePath($value['cover']));
@@ -56,7 +58,7 @@ class RevealController extends BaseController
             $list[$key]['cover_path'] = isset($reveal_image[0]) ? $reveal_image[0] : '';
         }
 
-        return view('home.reveal.index',compact('list'));
+        return view('home.reveal.index',compact('list', 'params'));
     }
 
     /**

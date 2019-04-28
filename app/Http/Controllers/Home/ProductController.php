@@ -82,7 +82,7 @@ class ProductController extends BaseController
             $list[$key]['image_path'] = isset($product_image[0]) ? $product_image[0] : '';
         }
 
-        return view('home.product.index',compact('list','menu'));
+        return view('home.product.index',compact('list','params','menu'));
     }
 
     /**

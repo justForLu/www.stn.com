@@ -92,7 +92,7 @@ class NewsController extends BaseController
             $recommend_news[$key]['image_path'] = isset($news_image[0]) ? $news_image[0] : '';
         }
 
-        return view('home.news.index',compact('list', 'recommend_news','menu'));
+        return view('home.news.index',compact('list', 'recommend_news','params','menu'));
     }
 
     /**
